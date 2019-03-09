@@ -2,7 +2,6 @@ package com.cheery.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cheery.common.Constant;
-import com.cheery.common.ResponseCode;
 import com.cheery.common.ServerResponse;
 import com.cheery.pojo.User;
 import com.cheery.service.impl.UserServiceImpl;
@@ -54,10 +53,11 @@ public class LoginController {
             if (response.isSuccess()) {
                 session.setAttribute(Constant.CURRENT_USER, user);
             }
-            return ServerResponse.createBySuccessData(JSON.toJSON(user));
+            return ServerResponse.createBySuccessMsgAndData("登录成功", JSON.toJSON(user));
         } catch (Exception e) {
             e.printStackTrace();
             return serverError();
         }
     }
+
 }
