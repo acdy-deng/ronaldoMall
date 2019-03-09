@@ -1,6 +1,6 @@
 package com.cheery.service.impl;
 
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.Product;
 import com.cheery.repository.ProductRepository;
 import com.cheery.service.IProductService;
@@ -22,8 +22,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cheery.common.PojoToVo.*;
-import static com.cheery.util.TipsUtil.parameterError;
+import static com.cheery.common.PojoConvertVo.*;
 
 /**
  * @desc: 产品业务逻辑层接口实现
@@ -38,7 +37,7 @@ public class ProductServiceImpl implements IProductService {
     private ProductRepository repository;
 
     @Override
-    public ServerResponse<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product) {
+    public ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product) {
         Pageable pageable = new PageRequest(page, size);
         Page<Product> products = repository.findAll(new Specification<Product>() {
             @Override
@@ -73,17 +72,16 @@ public class ProductServiceImpl implements IProductService {
         }
         PageInfo pageResult = new PageInfo(list);
         pageResult.setList(list);
-        return ServerResponse.createBySuccessMsgAndData("查询成功", pageResult);
+        return ApiResult.createBySuccessMsgAndData("查询成功", pageResult);
     }
 
     @Override
-    public ServerResponse<?> findProductDetailsById(Long id) {
-        parameterError(id);
+    public ApiResult<?> findProductDetailsById(Long id) {
         Product product = repository.findOne(id);
         if (null == product) {
-            return ServerResponse.createByErrorMsg("该商品已下架或删除");
+            return ApiResult.createByErrorMsg("该商品已下架或删除");
         }
-        return ServerResponse.createBySuccessMsgAndData("查询成功", assembleProductDetailsVo(product));
+        return ApiResult.createBySuccessMsgAndData("查询成功", assembleProductDetailsVo(product));
     }
 
 }

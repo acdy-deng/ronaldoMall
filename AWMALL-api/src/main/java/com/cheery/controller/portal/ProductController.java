@@ -1,6 +1,6 @@
 package com.cheery.controller.portal;
 
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.Product;
 import com.cheery.service.ICommentService;
 import com.cheery.service.IProductService;
@@ -10,8 +10,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import static com.cheery.util.TipsUtil.serverError;
 
 /**
  * @desc: 产品模块前台控制器
@@ -37,7 +35,7 @@ public class ProductController {
      * @param size     每页条数
      * @param keyWords 搜索关键字
      * @param product  产品实体( 用于传多条件参数 )
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-28 23:02
      */
@@ -49,37 +47,27 @@ public class ProductController {
             @ApiImplicitParam(name = "product", value = "产品实体", dataType = "Product")
     })
     @GetMapping("/list")
-    public ServerResponse<?> findProductByMultipleconditions(
+    public ApiResult<?> findProductByMultipleconditions(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
-            String keyWords, String p_brand, String p_style, Product product
+            String keyWords, String brandname, String stylename, Product product
     ) {
-        try {
-            return productService.findProductByMultipleconditions(page, size, keyWords, p_brand, p_style, product);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+        return productService.findProductByMultipleconditions(page, size, keyWords, brandname, stylename, product);
     }
 
     /**
      * desc: 根据产品id查询产品详情
      *
      * @param id 产品id
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-03 16:48
      */
     @ApiOperation(value = "根据产品id查询产品详情")
     @ApiImplicitParam(name = "id", value = "产品id", dataType = "Long")
     @GetMapping("/details")
-    public ServerResponse<?> findProductDetails(Long id) {
-        try {
-            return productService.findProductDetailsById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+    public ApiResult<?> findProductDetails(Long id) {
+        return productService.findProductDetailsById(id);
     }
 
     /**
@@ -88,7 +76,7 @@ public class ProductController {
      * @param page 页码
      * @param size 每页条数
      * @param id   产品id
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-03 21:16
      */
@@ -99,17 +87,12 @@ public class ProductController {
             @ApiImplicitParam(name = "id", value = "产品id", dataType = "Long")
     })
     @GetMapping("/p/comment")
-    public ServerResponse<?> findAllByProductId(
+    public ApiResult<?> findAllByProductId(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
             Long id
     ) {
-        try {
-            return commentService.findCommentByProductId(page, size, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+        return commentService.findCommentByProductId(page, size, id);
     }
 
     /**
@@ -118,7 +101,7 @@ public class ProductController {
      * @param page 页码
      * @param size 每页条数
      * @param id   用户id
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-06 14:49
      */
@@ -129,17 +112,12 @@ public class ProductController {
             @ApiImplicitParam(name = "id", value = "产品id", dataType = "Long")
     })
     @GetMapping("/u/comment")
-    public ServerResponse<?> findAllByUserId(
+    public ApiResult<?> findAllByUserId(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
             Long id
     ) {
-        try {
-            return commentService.findCommentByUserId(page, size, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+        return commentService.findCommentByUserId(page, size, id);
     }
 
 }

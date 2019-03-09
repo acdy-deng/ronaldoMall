@@ -12,9 +12,9 @@ import java.security.MessageDigest;
  */
 public class Md5Util {
 
-    private static final String HEXDIGITS[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+    private static final String[] HEXDIGITS = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
-    private static String byteArrayToHexString(byte b[]) {
+    private static String byteArrayToHexString(byte[] b) {
         StringBuffer resultSb = new StringBuffer();
         for (int i = 0; i < b.length; i++) {
             resultSb.append(byteToHexString(b[i]));
@@ -39,7 +39,7 @@ public class Md5Util {
      * @param charsetname
      * @return
      */
-    private static String MD5Encode(String origin, String charsetname) {
+    private static String md5Encode(String origin, String charsetname) {
         String resultString = null;
         try {
             resultString = new String(origin);
@@ -55,9 +55,9 @@ public class Md5Util {
         return resultString.toUpperCase();
     }
 
-    public static String MD5EncodeUtf8(String origin) {
+    public static String md5EncodeUtf8(String origin) {
         origin = origin + "ronaldo78eqd+./aqj23ou89ZXcj@#$@#$#@KJdjklj;D../dSF.,";
-        return MD5Encode(origin, Constant.ENCODING);
+        return md5Encode(origin, Constant.ENCODING);
     }
 
 }

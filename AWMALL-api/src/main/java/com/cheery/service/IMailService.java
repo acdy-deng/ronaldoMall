@@ -17,6 +17,7 @@ public interface IMailService {
      * @param subject 发送的主题
      * @param content 发送的内容
      * @return
+     * @throws MessagingException
      * @auther RONALDO
      * @date: 2019-03-09 13:41
      */

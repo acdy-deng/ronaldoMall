@@ -1,22 +1,20 @@
 package com.cheery.controller.portal;
 
 import com.alibaba.fastjson.JSON;
+import com.cheery.common.ApiCode;
+import com.cheery.common.ApiResult;
+import com.cheery.common.GlobalException;
 import com.cheery.pojo.User;
 import com.cheery.service.IUserService;
 import com.cheery.common.Constant;
-import com.cheery.common.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-
-import static com.cheery.util.TipsUtil.noLogin;
-import static com.cheery.util.TipsUtil.serverError;
 
 /**
  * @desc: 用户模块前台控制器
@@ -36,23 +34,18 @@ public class UserController {
      * desc: 用户登出
      *
      * @param session session会话
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-23 22:34
      */
     @ApiOperation(value = "用户登出")
     @GetMapping("/logout")
-    public ServerResponse<?> logout(HttpSession session) {
-        try {
-            session.removeAttribute(Constant.CURRENT_USER);
-            if (null != session.getAttribute(Constant.CURRENT_USER)) {
-                return ServerResponse.createBySuccessMsg("登出异常,请稍候再试");
-            } else {
-                return ServerResponse.createBySuccessMsg("登出成功");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+    public ApiResult<?> logout(HttpSession session) {
+        session.removeAttribute(Constant.CURRENT_USER);
+        if (null != session.getAttribute(Constant.CURRENT_USER)) {
+            return ApiResult.createBySuccessMsg("登出异常,请稍候再试");
+        } else {
+            return ApiResult.createBySuccessMsg("登出成功");
         }
     }
 
@@ -60,45 +53,33 @@ public class UserController {
      * desc: 用户注册
      *
      * @param user 用户对象
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-23 22:39
      */
     @ApiOperation(value = "用户注册")
     @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PostMapping("/register")
-    public ServerResponse<?> register(User user) {
-        try {
-            return userService.register(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+    public ApiResult<?> register(User user) {
+        return userService.register(user);
     }
 
     /**
      * desc: 获取用户信息
      *
      * @param session session会话
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-24 20:07
      */
     @ApiOperation(value = "获取用户信息")
     @PostMapping("/user")
-    public ServerResponse<?> getUserInfo(HttpSession session) {
+    public ApiResult<?> getUserInfo(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        try {
-            if (null == currentUser) {
-                return noLogin();
-            } else {
-                currentUser.setPassword(StringUtils.EMPTY);
-                currentUser.setComments(null);
-                return ServerResponse.createBySuccessData(JSON.toJSON(currentUser));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+        if (null == currentUser) {
+            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
+        } else {
+            return ApiResult.createBySuccessData(JSON.toJSON(currentUser));
         }
     }
 
@@ -106,20 +87,18 @@ public class UserController {
      * desc: 根据手机号码查询密保问题
      *
      * @param phone 电话号码
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-24 20:39
      */
     @ApiOperation(value = "未登录情况下获取用户密保问题")
     @ApiImplicitParam(name = "phone", value = "登录名（手机号）", required = true, dataType = "String")
     @PostMapping("/question")
-    public ServerResponse<?> getQuestion(String phone) {
-        try {
-            return userService.findQuestionByPhone(phone);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+    public ApiResult<?> getQuestion(String phone) {
+        if (null == phone) {
+            throw new GlobalException(ApiCode.ILLEGAL_ARGUMENT.getCode(), ApiCode.ILLEGAL_ARGUMENT.getDesc());
         }
+        return userService.findQuestionByPhone(phone);
     }
 
     /**
@@ -128,7 +107,7 @@ public class UserController {
      * @param phone    手机号码
      * @param question 密保问题
      * @param answer   密保答案
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-24 21:09
      */
@@ -139,13 +118,8 @@ public class UserController {
             @ApiImplicitParam(name = "answer", value = "密保答案", required = true, dataType = "String")
     })
     @PostMapping("/checkanswer")
-    public ServerResponse<?> checkAnswer(String phone, String question, String answer) {
-        try {
-            return userService.checkAnswer(phone, question, answer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+    public ApiResult<?> checkAnswer(String phone, String question, String answer) {
+        return userService.checkAnswer(phone, question, answer);
     }
 
     /**
@@ -154,7 +128,7 @@ public class UserController {
      * @param phone       手机号码
      * @param newPassword 新密码
      * @param token       效验密码通过后返回的token
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-25 08:32
      */
@@ -165,13 +139,8 @@ public class UserController {
             @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String")
     })
     @PutMapping("/respwd")
-    public ServerResponse<?> restPassword(String phone, String newPassword, String token) {
-        try {
-            return userService.restPassword(phone, newPassword, token);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
-        }
+    public ApiResult<?> restPassword(String phone, String newPassword, String token) {
+        return userService.restPassword(phone, newPassword, token);
     }
 
     /**
@@ -180,7 +149,7 @@ public class UserController {
      * @param session     session对象
      * @param oldPassword 原密码
      * @param newPassword 新密码
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-25 11:46
      */
@@ -190,19 +159,12 @@ public class UserController {
             @ApiImplicitParam(name = "newPassword", value = "新密码", required = true, dataType = "String")
     })
     @PutMapping("/respwds")
-    public ServerResponse<?> restPassword(HttpSession session, String oldPassword, String newPassword) {
+    public ApiResult<?> restPassword(HttpSession session, String oldPassword, String newPassword) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        ServerResponse<?> response = null;
-        try {
-            if (null == currentUser) {
-                return noLogin();
-            }
-            response = userService.restPassword(currentUser, oldPassword, newPassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+        if (null == currentUser) {
+            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
         }
-        return response;
+        return userService.restPassword(currentUser, oldPassword, newPassword);
     }
 
     /**
@@ -210,29 +172,24 @@ public class UserController {
      *
      * @param session session对象
      * @param user    用户对象
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-25 14:57
      */
     @ApiOperation(value = "修改用户信息")
     @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PutMapping("/update")
-    public ServerResponse<?> updateUserInfo(HttpSession session, User user) {
+    public ApiResult<?> updateUserInfo(HttpSession session, User user) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        try {
-            if (null == currentUser) {
-                return noLogin();
-            }
-            ServerResponse<?> response = userService.updateInfo(userService.getInfoById(currentUser.getId()), user);
-            if (response.isSuccess()) {
-                // 更新session
-                session.setAttribute(Constant.CURRENT_USER, response.getData());
-            }
-            return response;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+        if (null == currentUser) {
+            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
         }
+        ApiResult<?> response = userService.updateInfo(userService.getInfoById(currentUser.getId()), user);
+        if (response.isSuccess()) {
+            // 更新session
+            session.setAttribute(Constant.CURRENT_USER, response.getData());
+        }
+        return response;
     }
 
 }

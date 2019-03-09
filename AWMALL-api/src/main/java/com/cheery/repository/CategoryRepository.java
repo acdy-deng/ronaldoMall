@@ -23,7 +23,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long>, CrudR
      *
      * @param id   产品分类id
      * @param name 产品名称
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-27 20:13
      */

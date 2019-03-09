@@ -1,6 +1,6 @@
 package com.cheery.service;
 
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.Product;
 
 /**
@@ -20,20 +20,20 @@ public interface IProductService {
      * @param brand    产品品牌
      * @param style    产品风格
      * @param product  产品实体( 用于传多条件参数 )
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-28 21:59
      */
-    ServerResponse<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product);
+    ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product);
 
     /**
      * desc: 根据产品id查询产品详情
      *
      * @param id 产品id
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-03 16:42
      */
-    ServerResponse<?> findProductDetailsById(Long id);
+    ApiResult<?> findProductDetailsById(Long id);
 
 }

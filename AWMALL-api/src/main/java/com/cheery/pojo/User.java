@@ -18,8 +18,7 @@ import java.util.Collection;
  * @author: RONALDO
  * @date: 2019-02-23 16:26
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "user")
 @EqualsAndHashCode(callSuper = true)

@@ -1,7 +1,7 @@
 package com.cheery.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.ProductComment;
 import com.cheery.repository.ProductCommentReplyRepository;
 import com.cheery.repository.ProductCommentRepository;
@@ -25,7 +25,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-import static com.cheery.util.TipsUtil.parameterError;
 
 
 /**
@@ -47,8 +46,7 @@ public class CommentServiceImpl implements ICommentService {
     private ProductCommentReplyRepository productCommentReplyRepository;
 
     @Override
-    public ServerResponse<?> findCommentByProductId(Integer page, Integer size, Long productId) {
-        parameterError(productId);
+    public ApiResult<?> findCommentByProductId(Integer page, Integer size, Long productId) {
         Pageable pageable = new PageRequest(page, size, new Sort(new Sort.Order(Sort.Direction.DESC, "createtime")));
         Page<ProductComment> products = repository.findAll(new Specification<ProductComment>() {
             @Override
@@ -62,11 +60,11 @@ public class CommentServiceImpl implements ICommentService {
         }
         PageInfo pageResult = new PageInfo(list);
         pageResult.setList(list);
-        return ServerResponse.createBySuccessMsgAndData("查询成功", JSON.toJSON(pageResult));
+        return ApiResult.createBySuccessMsgAndData("查询成功", JSON.toJSON(pageResult));
     }
 
     @Override
-    public ServerResponse<?> findCommentByUserId(Integer page, Integer size, Long userId) {
+    public ApiResult<?> findCommentByUserId(Integer page, Integer size, Long userId) {
         Pageable pageable = new PageRequest(page, size, new Sort(new Sort.Order(Sort.Direction.DESC, "createtime")));
         Page<ProductComment> products = repository.findAll(new Specification<ProductComment>() {
             @Override
@@ -80,7 +78,7 @@ public class CommentServiceImpl implements ICommentService {
         }
         PageInfo pageResult = new PageInfo(list);
         pageResult.setList(list);
-        return ServerResponse.createBySuccessMsgAndData("查询成功", JSON.toJSON(pageResult));
+        return ApiResult.createBySuccessMsgAndData("查询成功", JSON.toJSON(pageResult));
     }
 
     private CommentVo assembleProductCommentVo(ProductComment pc) {

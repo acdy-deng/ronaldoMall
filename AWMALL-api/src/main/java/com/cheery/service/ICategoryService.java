@@ -1,7 +1,6 @@
 package com.cheery.service;
 
-import com.cheery.common.ServerResponse;
-import com.cheery.pojo.Category;
+import com.cheery.common.ApiResult;
 
 /**
  * @desc: 分类业务逻辑层接口
@@ -17,10 +16,10 @@ public interface ICategoryService {
      * 如当前父分类ID为0 它有子类ID为1000 1001 1002 会全部查询出来 但是子类下面的子类不会查询出来了
      *
      * @param parentId 父类别id
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-27 20:39
      */
-    ServerResponse<?> findParallelAndChilderCategoryByParentId(int parentId);
+    ApiResult<?> findParallelAndChilderCategoryByParentId(int parentId);
 
 }

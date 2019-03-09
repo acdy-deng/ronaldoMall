@@ -23,7 +23,7 @@ import java.util.List;
  * @date: 2019-03-03 17:11
  */
 @Component
-public class PojoToVo {
+public class PojoConvertVo {
 
     @Autowired
     private CartRepository repository;

@@ -2,7 +2,7 @@ package com.cheery.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cheery.common.Constant;
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.User;
 import com.cheery.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
@@ -36,7 +36,7 @@ public class LoginController {
      * @param phone    手机号码
      * @param password 密码
      * @param session  session会话
-     * @return ServerResponse<?>
+     * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-23 22:03
      */
@@ -46,14 +46,14 @@ public class LoginController {
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/login")
-    public ServerResponse<?> userlogin(HttpSession session, String phone, String password) {
+    public ApiResult<?> userlogin(HttpSession session, String phone, String password) {
         try {
-            ServerResponse<User> response = userService.login(phone, password);
+            ApiResult<User> response = userService.login(phone, password);
             User user = response.getData();
             if (response.isSuccess()) {
                 session.setAttribute(Constant.CURRENT_USER, user);
             }
-            return ServerResponse.createBySuccessMsgAndData("登录成功", JSON.toJSON(user));
+            return ApiResult.createBySuccessMsgAndData("登录成功", JSON.toJSON(user));
         } catch (Exception e) {
             e.printStackTrace();
             return serverError();

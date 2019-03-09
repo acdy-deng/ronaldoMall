@@ -1,6 +1,6 @@
 package com.cheery.service.impl;
 
-import com.cheery.common.ServerResponse;
+import com.cheery.common.ApiResult;
 import com.cheery.pojo.Category;
 import com.cheery.repository.CategoryRepository;
 import com.cheery.service.ICategoryService;
@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.transaction.Transactional;
-import java.util.List;import static com.cheery.util.TipsUtil.parameterError;
+import java.util.List;
 
 
 /**
@@ -25,16 +24,15 @@ public class CategoryServiceImpl implements ICategoryService {
     private CategoryRepository repository;
 
     @Override
-    public ServerResponse<?> findParallelAndChilderCategoryByParentId(int parentId) {
-        parameterError(parentId);
+    public ApiResult<?> findParallelAndChilderCategoryByParentId(int parentId) {
         List<Category> categoryList = repository.findAllByParentId(parentId);
         if (CollectionUtils.isEmpty(categoryList)) {
-            return ServerResponse.createByErrorMsg("未找到当前分类的子分类");
+            return ApiResult.createByErrorMsg("未找到当前分类的子分类");
         }
         for (Category c : categoryList) {
             c.setProducts(null);
         }
-        return ServerResponse.createBySuccessMsgAndData("查询成功", categoryList);
+        return ApiResult.createBySuccessMsgAndData("查询成功", categoryList);
     }
 
 }
