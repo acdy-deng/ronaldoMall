@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-import static com.cheery.util.TipsUtil.serverError;
-
 /**
  * @desc: 登录控制器
  * @className: LoginController
@@ -47,17 +45,12 @@ public class LoginController {
     })
     @PostMapping("/login")
     public ApiResult<?> userlogin(HttpSession session, String phone, String password) {
-        try {
-            ApiResult<User> response = userService.login(phone, password);
-            User user = response.getData();
-            if (response.isSuccess()) {
-                session.setAttribute(Constant.CURRENT_USER, user);
-            }
-            return ApiResult.createBySuccessMsgAndData("登录成功", JSON.toJSON(user));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return serverError();
+        ApiResult<User> response = userService.login(phone, password);
+        User user = response.getData();
+        if (response.isSuccess()) {
+            session.setAttribute(Constant.CURRENT_USER, user);
         }
+        return ApiResult.createBySuccessMsgAndData("登录成功", JSON.toJSON(user));
     }
 
 }

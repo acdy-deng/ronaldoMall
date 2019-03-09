@@ -1,12 +1,9 @@
 package com.cheery.controller.portal;
 
 import com.alibaba.fastjson.JSON;
-import com.cheery.common.ApiCode;
-import com.cheery.common.ApiResult;
-import com.cheery.common.GlobalException;
+import com.cheery.common.*;
 import com.cheery.pojo.User;
 import com.cheery.service.IUserService;
-import com.cheery.common.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
