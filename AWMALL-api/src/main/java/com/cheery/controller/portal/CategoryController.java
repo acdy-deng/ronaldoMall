@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @desc:
+ * @desc: 分类模块前台控制器
  * @className: CategoryController
  * @author: RONALDO
  * @date: 2019-03-04 13:30
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/category")
 @Api("产品分类模块Api")
 public class CategoryController {

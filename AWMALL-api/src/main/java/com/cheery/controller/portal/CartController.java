@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-04 14:15
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/cart")
 @Api("购物车模块Api")
 public class CartController {

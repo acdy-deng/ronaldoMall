@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-02-27 14:23
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @Api("登录模块Api")
 public class LoginController {
 
@@ -31,7 +33,7 @@ public class LoginController {
     /**
      * desc: 用户登录
      *
-     * @param phone    手机号码
+     * @param email    邮箱
      * @param password 密码
      * @param session  session会话
      * @return ApiResult<?>
@@ -40,12 +42,12 @@ public class LoginController {
      */
     @ApiOperation(value = "用户登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "登录名（手机号）", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String")
     })
     @PostMapping("/login")
-    public ApiResult<?> userlogin(HttpSession session, String phone, String password) {
-        ApiResult<User> response = userService.login(phone, password);
+    public ApiResult<?> userlogin(HttpSession session, String email, String password) {
+        ApiResult<User> response = userService.login(email, password);
         User user = response.getData();
         if (response.isSuccess()) {
             session.setAttribute(Constant.CURRENT_USER, user);

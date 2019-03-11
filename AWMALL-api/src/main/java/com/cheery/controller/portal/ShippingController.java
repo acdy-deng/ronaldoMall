@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-06 13:23
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr/address")
 @Api("用户收货地址模块Api")
 public class ShippingController {

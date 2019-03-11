@@ -23,4 +23,7 @@ public interface IMailService {
      */
     void sendHtmlMail(String to, String subject, String content) throws MessagingException;
 
+
+    void sendSimpleMail(String to, String subject, String content);
+
 }

@@ -18,7 +18,8 @@ import java.util.Collection;
  * @author: RONALDO
  * @date: 2019-02-23 16:26
  */
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "user")
 @EqualsAndHashCode(callSuper = true)
@@ -37,17 +38,6 @@ public class User extends BaseEntity implements Serializable {
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "question")
-    @JSONField(serialize = false)
-    private String question;
-
-    @Column(name = "answer")
-    @JSONField(serialize = false)
-    private String answer;
 
     @Column(name = "role")
     @JSONField(serialize = false)

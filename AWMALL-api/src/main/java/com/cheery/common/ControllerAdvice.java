@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @desc:
+ * @desc: 异常处理类
  * @className: ControllerAdvice
  * @author: RONALDO
  * @date: 2019-03-09 17:51
@@ -28,7 +28,7 @@ public class ControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Object handleException(Exception e, HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<>(3);
+        Map<String, Object> map = new HashMap<>(4);
         map.put("code", ApiCode.ERROR_SERVER.getCode());
         map.put("msg", ApiCode.ERROR_SERVER.getDesc());
         map.put("error", e);

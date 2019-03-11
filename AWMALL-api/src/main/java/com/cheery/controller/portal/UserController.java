@@ -3,6 +3,7 @@ package com.cheery.controller.portal;
 import com.alibaba.fastjson.JSON;
 import com.cheery.common.*;
 import com.cheery.pojo.User;
+import com.cheery.service.IMailService;
 import com.cheery.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
+import static com.cheery.util.OtpUtil.otp;
+
+
 /**
  * @desc: 用户模块前台控制器
  * @className: UserController
@@ -20,12 +24,16 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-02-23 14:52
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr")
 @Api("用户模块Api")
 public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IMailService mailService;
 
     /**
      * desc: 用户登出
@@ -81,63 +89,45 @@ public class UserController {
     }
 
     /**
-     * desc: 根据手机号码查询密保问题
+     * desc: 根据邮箱获取otp验证码
      *
-     * @param phone 电话号码
+     * @param email 邮箱
      * @return ApiResult<?>
      * @auther RONALDO
-     * @date: 2019-02-24 20:39
+     * @date: 2019-03-09 22:03
      */
-    @ApiOperation(value = "未登录情况下获取用户密保问题")
-    @ApiImplicitParam(name = "phone", value = "登录名（手机号）", required = true, dataType = "String")
-    @PostMapping("/question")
-    public ApiResult<?> getQuestion(String phone) {
-        if (null == phone) {
-            throw new GlobalException(ApiCode.ILLEGAL_ARGUMENT.getCode(), ApiCode.ILLEGAL_ARGUMENT.getDesc());
+    @PostMapping("/getotp")
+    public ApiResult<?> getOtpByEmail(HttpSession session, String email) {
+        if (null == userService.isExistByEmail(email)) {
+            return ApiResult.createByErrorMsg("用户不存在");
+        } else {
+            String otpCode = otp();
+            session.setMaxInactiveInterval(3 * 60);
+            session.setAttribute(email, otpCode);
+            mailService.sendSimpleMail(email, "AWMALL商城官网", "尊敬的用户您的验证码为{ " + otpCode + " },请于3分钟内正确输入，如非本人操作，请忽略此邮件。");
         }
-        return userService.findQuestionByPhone(phone);
-    }
-
-    /**
-     * desc: 效验密保答案
-     *
-     * @param phone    手机号码
-     * @param question 密保问题
-     * @param answer   密保答案
-     * @return ApiResult<?>
-     * @auther RONALDO
-     * @date: 2019-02-24 21:09
-     */
-    @ApiOperation(value = "效验密保答案")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "登录名（手机号）", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "question", value = "密保问题", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "answer", value = "密保答案", required = true, dataType = "String")
-    })
-    @PostMapping("/checkanswer")
-    public ApiResult<?> checkAnswer(String phone, String question, String answer) {
-        return userService.checkAnswer(phone, question, answer);
+        return ApiResult.createBySuccessData("发送成功");
     }
 
     /**
      * desc: 未登录情况下重置密码
      *
-     * @param phone       手机号码
+     * @param email       邮箱
      * @param newPassword 新密码
-     * @param token       效验密码通过后返回的token
+     * @param otp         otp码
      * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-25 08:32
      */
     @ApiOperation(value = "未登录状态下修改密码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "登录名（手机号）", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String"),
             @ApiImplicitParam(name = "newPassword", value = "新密码", required = true, dataType = "String"),
             @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String")
     })
     @PutMapping("/respwd")
-    public ApiResult<?> restPassword(String phone, String newPassword, String token) {
-        return userService.restPassword(phone, newPassword, token);
+    public ApiResult<?> restPassword(String email, String newPassword, String otp) {
+        return userService.restPassword(email, newPassword, otp);
     }
 
     /**

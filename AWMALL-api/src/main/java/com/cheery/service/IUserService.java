@@ -14,14 +14,14 @@ public interface IUserService {
     /**
      * desc: 用户登录
      *
-     * @param phone    手机号码
+     * @param email    邮箱
      * @param password 密码
      * @return ApiResult<User>
      * @throws Exception
      * @auther RONALDO
      * @date: 2019-02-23 16:36
      */
-    ApiResult<User> login(String phone, String password);
+    ApiResult<User> login(String email, String password);
 
     /**
      * desc: 用户注册
@@ -35,41 +35,17 @@ public interface IUserService {
     ApiResult<?> register(User user);
 
     /**
-     * desc: 根据手机号码查询用户密保问题
-     *
-     * @param phone 手机号码
-     * @return ApiResult<?>
-     * @throws Exception
-     * @auther RONALDO
-     * @date: 2019-02-24 20:25
-     */
-    ApiResult<?> findQuestionByPhone(String phone);
-
-    /**
-     * desc: 效验密保答案
-     *
-     * @param phone    手机号码
-     * @param question 密保问题
-     * @param answer   密保答案
-     * @return ApiResult<?>
-     * @throws Exception
-     * @auther RONALDO
-     * @date: 2019-02-24 21:26
-     */
-    ApiResult<?> checkAnswer(String phone, String question, String answer);
-
-    /**
      * desc: 未登录状态下的重置密码
      *
-     * @param phone       手机号码
+     * @param email       邮箱
      * @param newPassword 新密码
-     * @param token       效验密码通过后返回的token
+     * @param otp         otp
      * @return ApiResult<?>
      * @throws Exception
      * @auther RONALDO
      * @date: 2019-02-25 08:38
      */
-    ApiResult<?> restPassword(String phone, String newPassword, String token);
+    ApiResult<?> restPassword(String email, String newPassword, String otp);
 
     /**
      * desc:
@@ -107,12 +83,22 @@ public interface IUserService {
      */
     User getInfoById(Long id);
 
+
+    /**
+     * desc: 根据邮箱查看用户是否存在
+     *
+     * @param email 邮箱
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-09 22:04
+     */
+    User isExistByEmail(String email);
+
     /**
      * desc: 检验用户角色是否为管理员
      *
      * @param user 用户对象
      * @return ApiResult<?>
-     * @throws Exception
      * @auther RONALDO
      * @date: 2019-02-27 19:44
      */

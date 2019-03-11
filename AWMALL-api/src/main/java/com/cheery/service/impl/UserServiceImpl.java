@@ -12,9 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.util.UUID;
-
 
 /**
  * @desc: 用户业务逻辑层接口实现
@@ -28,11 +27,14 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @Override
-    public ApiResult<User> login(String phone, String password) {
+    public ApiResult<User> login(String email, String password) {
         // 将文本密码二次加密
         String md5Password = Md5Util.md5EncodeUtf8(password);
-        User user = repository.findByPhoneAndPassword(phone, md5Password);
+        User user = repository.findByEmailAndPassword(email, md5Password);
         if (null == user) {
             return ApiResult.createByErrorMsg("用户名或密码错误");
         }
@@ -50,9 +52,6 @@ public class UserServiceImpl implements IUserService {
         if (0 < repository.countByEmail(user.getEmail())) {
             return ApiResult.createByErrorMsg("该邮箱已被占用");
         }
-        if (0 < repository.countByPhone(user.getPhone())) {
-            return ApiResult.createByErrorMsg("该手机号码已被占用");
-        }
         // MD5加密用户密码
         user.setPassword(Md5Util.md5EncodeUtf8(user.getPassword()));
         if (null == repository.save(user)) {
@@ -62,51 +61,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ApiResult<?> findQuestionByPhone(String phone) {
-        User user = repository.findByPhone(phone);
-        if (null == user) {
-            return ApiResult.createByErrorMsg("该用户不存在");
-        }
-        if (StringUtils.isNoneBlank(user.getQuestion())) {
-            return ApiResult.createBySuccessData(user.getQuestion());
-        }
-        return ApiResult.createByErrorMsg("找回的密码问题是空的");
-    }
-
-    @Override
-    public ApiResult<?> checkAnswer(String phone, String question, String answer) {
-        if (0 < repository.countByPhoneAndQuestionAndAnswer(phone, question, answer)) {
-            // 使用UUID生成一个token
-            String token = UUID.randomUUID().toString();
-            // 设置本地缓存
-            TokenCache.setKey(Constant.TOKEN + phone, token);
-            return ApiResult.createBySuccessData(token);
-        }
-        return ApiResult.createByErrorMsg("密保答案错误");
-    }
-
-    @Override
     @Transactional(rollbackOn = Exception.class)
-    public ApiResult<?> restPassword(String phone, String newPassword, String token) {
-        User user = repository.findByPhone(phone);
-        if (StringUtils.isBlank(token)) {
-            return ApiResult.createByErrorMsg("参数错误,token需要传递");
-        }
+    public ApiResult<?> restPassword(String email, String newPassword, String otp) {
+        User user = repository.findByEmail(email);
+        String otpCode = (String) request.getSession().getAttribute(email);
+        String nPsd = Md5Util.md5EncodeUtf8(newPassword);
         if (null == user) {
             return ApiResult.createByErrorMsg("该用户不存在");
         }
-        // 从本地缓存中获取token
-        String localToken = TokenCache.getKey(Constant.TOKEN + phone);
-        if (StringUtils.isBlank(localToken)) {
-            return ApiResult.createByErrorMsg("token已过期");
+        if (StringUtils.isBlank(otpCode)) {
+            return ApiResult.createByErrorMsg("验证码已过期");
         }
-        String nPsd = Md5Util.md5EncodeUtf8(newPassword);
-        if (StringUtils.equals(localToken, token) && !nPsd.equals(user.getPassword())) {
-            if (0 < repository.updatePasswordByPhone(nPsd, phone)) {
-                return ApiResult.createBySuccessMsg("密码修改成功");
-            }
+        if (otp.equals(otpCode) && !nPsd.equals(user.getPassword()) && 0 < repository.updatePasswordByEmail(nPsd, email)) {
+            return ApiResult.createBySuccessMsg("密码修改成功");
         }
-        return ApiResult.createByErrorMsg("新旧token不同或新旧密码相同");
+        return ApiResult.createByErrorMsg("验证码不存在或新旧密码相同");
     }
 
     @Override
@@ -125,12 +94,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ApiResult<?> updateInfo(User currentUser, User user) {
-        // 保证邮箱和手机是用户系统唯一的
+        // 保证邮箱是用户系统唯一的
         if (0 < repository.countByEmailIsOccupy(user.getEmail(), user.getId())) {
             return ApiResult.createByErrorMsg("该邮箱已被占用");
-        }
-        if (0 < repository.countByPhoneIsOccupy(user.getPhone(), user.getId())) {
-            return ApiResult.createByErrorMsg("该手机号已被占用");
         }
         // 自动忽略为空的属性
         UpdateUtil.copyNullProperties(currentUser, user);
@@ -148,10 +114,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User isExistByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
     public ApiResult<?> checkUserRole(User user) {
         if (null != user && (user.getRole() == Constant.Role.ROLE_ADMIN)) {
             return ApiResult.createBySuccess();
         }
         return ApiResult.createByError();
     }
+
+
 }

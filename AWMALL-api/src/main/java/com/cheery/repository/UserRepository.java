@@ -19,48 +19,36 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
     /**
      * desc: 登录
      *
-     * @param phone    手机号码
+     * @param email    邮箱
      * @param password 密码
      * @return 用户对象
      * @auther RONALDO
      * @date: 2019-02-23 16:50
      */
-    User findByPhoneAndPassword(String phone, String password);
+    User findByEmailAndPassword(String email, String password);
 
     /**
      * desc: 根据手机号码查询该用户是否存在
      *
-     * @param phone 手机号码
+     * @param email 邮箱
      * @return 用户对象
      * @auther RONALDO
      * @date: 2019-02-24 20:19
      */
-    User findByPhone(String phone);
-
-    /**
-     * desc: 根据手机号码、密保问题、密保答案查询该用户是否存在
-     *
-     * @param phone    手机号码
-     * @param question 密保问题
-     * @param answer   密保答案
-     * @return 受影响的行数
-     * @auther RONALDO
-     * @date: 2019-02-24 21:17
-     */
-    int countByPhoneAndQuestionAndAnswer(String phone, String question, String answer);
+    User findByEmail(String email);
 
     /**
      * desc: 根据手机号码修改密码
      *
-     * @param phone       手机号码
+     * @param email       邮箱
      * @param newPassword 新密码
      * @return 受影响的行数
      * @auther RONALDO
      * @date: 2019-02-25 08:52
      */
     @Modifying
-    @Query(value = "UPDATE user SET password = ?,update_time = NOW() WHERE phone = ?", nativeQuery = true)
-    int updatePasswordByPhone(String newPassword, String phone);
+    @Query(value = "UPDATE user SET password = ?,update_time = NOW() WHERE email = ?", nativeQuery = true)
+    int updatePasswordByEmail(String newPassword, String email);
 
     /**
      * desc: 根据用户id修改密码
@@ -87,16 +75,6 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
     int countByIdAndPassword(Long id, String password);
 
     /**
-     * desc: 查询邮箱是否占用
-     *
-     * @param emial 邮箱
-     * @return 受影响的行数
-     * @auther RONALDO
-     * @date: 2019-02-25 14:13
-     */
-    int countByEmail(String emial);
-
-    /**
      * desc: 查询邮箱是否被其他用户占用
      *
      * @param emial 邮箱
@@ -111,24 +89,12 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
     /**
      * desc: 查询是否被占用
      *
-     * @param phone 手机号码
+     * @param email 邮箱
      * @return 受影响的行数
      * @auther RONALDO
      * @date: 2019-02-25 14:19
      */
-    int countByPhone(String phone);
-
-    /**
-     * desc: 查询是否被其他用户占用
-     *
-     * @param phone 手机号码
-     * @param id    用户id
-     * @return 受影响的行数
-     * @auther RONALDO
-     * @date: 2019-02-25 14:23
-     */
-    @Query(value = "SELECT COUNT(1) FROM user WHERE phone = ? AND id != ?", nativeQuery = true)
-    int countByPhoneIsOccupy(String phone, Long id);
+    int countByEmail(String email);
 
     /**
      * desc: 根据用户id查询用户信息

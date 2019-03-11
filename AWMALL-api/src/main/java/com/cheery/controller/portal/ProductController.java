@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @date: 2019-02-28 21:52
  */
 @RestController
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/product")
 @Api("产品模块Api")
 public class ProductController {
