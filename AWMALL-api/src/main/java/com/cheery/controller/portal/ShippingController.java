@@ -1,9 +1,6 @@
 package com.cheery.controller.portal;
 
-import com.cheery.common.ApiCode;
-import com.cheery.common.ApiResult;
-import com.cheery.common.Constant;
-import com.cheery.common.GlobalException;
+import com.cheery.common.*;
 import com.cheery.pojo.Shipping;
 import com.cheery.pojo.User;
 import com.cheery.service.IShippingService;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 /**
- * @desc:
+ * @desc: 收货地址前端控制器
  * @className: ShippingController
  * @author: RONALDO
  * @date: 2019-03-06 13:23
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpSession;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr/address")
 @Api("用户收货地址模块Api")
-public class ShippingController {
+public class ShippingController extends BaseController {
 
     @Autowired
     private IShippingService shippingService;
@@ -43,12 +40,8 @@ public class ShippingController {
     @PostMapping("/add")
     public ApiResult<?> add(HttpSession session, Shipping shipping) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            shipping.setUserId(currentUser.getId());
-            return shippingService.addAddress(shipping);
-        }
+        shipping.setUserId(currentUser.getId());
+        return BaseController(currentUser, shippingService.addAddress(shipping));
     }
 
     /**
@@ -63,12 +56,8 @@ public class ShippingController {
     @PostMapping("/update")
     public ApiResult<?> update(HttpSession session, Shipping shipping) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            shipping.setUserId(currentUser.getId());
-            return shippingService.updateAddress(shipping);
-        }
+        shipping.setUserId(currentUser.getId());
+        return BaseController(currentUser, shippingService.updateAddress(shipping));
     }
 
     /**
@@ -83,11 +72,7 @@ public class ShippingController {
     @ApiImplicitParam(name = "id", value = "收货地址id", required = true, dataType = "Long")
     @DeleteMapping("/delete")
     public ApiResult<?> delete(HttpSession session, Long id) {
-        if (null == session.getAttribute(Constant.CURRENT_USER)) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return shippingService.deleteAddress(id);
-        }
+        return BaseController((User) session.getAttribute(Constant.CURRENT_USER), shippingService.deleteAddress(id));
     }
 
     /**

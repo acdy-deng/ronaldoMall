@@ -1,9 +1,6 @@
 package com.cheery.controller.portal;
 
-import com.cheery.common.ApiCode;
-import com.cheery.common.ApiResult;
-import com.cheery.common.Constant;
-import com.cheery.common.GlobalException;
+import com.cheery.common.*;
 import com.cheery.pojo.User;
 import com.cheery.service.ICartService;
 import io.swagger.annotations.Api;
@@ -17,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 
 /**
- * @desc: 购物车模块前台控制器
+ * @desc: 购物车模块前端控制器
  * @className: CartController
  * @author: RONALDO
  * @date: 2019-03-04 14:15
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpSession;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/cart")
 @Api("购物车模块Api")
-public class CartController {
+public class CartController extends BaseController {
 
     @Autowired
     private ICartService cartService;
@@ -43,11 +40,7 @@ public class CartController {
     @PostMapping("/list")
     public ApiResult<?> list(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.cartInfo(currentUser.getId());
-        }
+        return BaseController(currentUser, cartService.cartInfo(currentUser.getId()));
     }
 
     /**
@@ -62,11 +55,7 @@ public class CartController {
     @PostMapping("/count")
     public ApiResult<?> count(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.countProduct(currentUser.getId());
-        }
+        return BaseController(currentUser, cartService.countProduct(currentUser.getId()));
     }
 
     /**
@@ -86,11 +75,7 @@ public class CartController {
     @GetMapping("/add")
     public ApiResult<?> add(HttpSession session, Long productId, Integer count) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.add(currentUser.getId(), productId, count);
-        }
+        return BaseController(currentUser, cartService.add(currentUser.getId(), productId, count));
     }
 
     /**
@@ -109,11 +94,7 @@ public class CartController {
     @PutMapping("/update")
     public ApiResult<?> update(HttpSession session, Long productId, Integer count) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.update(currentUser.getId(), productId, count);
-        }
+        return BaseController(currentUser, cartService.update(currentUser.getId(), productId, count));
     }
 
     /**
@@ -129,11 +110,7 @@ public class CartController {
     @DeleteMapping("/delete")
     public ApiResult<?> delete(HttpSession session, Long[] productId) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.delete(currentUser.getId(), productId);
-        }
+        return BaseController(currentUser, cartService.delete(currentUser.getId(), productId));
     }
 
     /**
@@ -148,11 +125,7 @@ public class CartController {
     @GetMapping("/select_all")
     public ApiResult<?> selectAll(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.selectOrUnselectAll(Constant.Cart.CHECKED, currentUser.getId());
-        }
+        return BaseController(currentUser, cartService.selectOrUnselectAll(Constant.Cart.CHECKED, currentUser.getId()));
     }
 
     /**
@@ -167,11 +140,7 @@ public class CartController {
     @GetMapping("/un_select_all")
     public ApiResult<?> unSelectAll(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.selectOrUnselectAll(Constant.Cart.UN_CHECKED, currentUser.getId());
-        }
+        return BaseController(currentUser, cartService.selectOrUnselectAll(Constant.Cart.UN_CHECKED, currentUser.getId()));
     }
 
     /**
@@ -187,11 +156,7 @@ public class CartController {
     @GetMapping("/select_one")
     public ApiResult<?> selectOne(HttpSession session, Integer productId) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.selectOrUnselectOne(Constant.Cart.CHECKED, currentUser.getId(), productId);
-        }
+        return BaseController(currentUser, cartService.selectOrUnselectOne(Constant.Cart.CHECKED, currentUser.getId(), productId));
     }
 
     /**
@@ -207,11 +172,7 @@ public class CartController {
     @GetMapping("/un_select_one")
     public ApiResult<?> unSelectOne(HttpSession session, Integer productId) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return cartService.selectOrUnselectOne(Constant.Cart.UN_CHECKED, currentUser.getId(), productId);
-        }
+        return BaseController(currentUser, cartService.selectOrUnselectOne(Constant.Cart.UN_CHECKED, currentUser.getId(), productId));
     }
 
 }

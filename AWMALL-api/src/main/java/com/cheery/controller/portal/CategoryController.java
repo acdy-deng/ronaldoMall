@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @desc: 分类模块前台控制器
+ * @desc: 分类模块前端控制器
  * @className: CategoryController
  * @author: RONALDO
  * @date: 2019-03-04 13:30

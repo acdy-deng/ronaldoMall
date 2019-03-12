@@ -18,7 +18,7 @@ import static com.cheery.util.OtpUtil.otp;
 
 
 /**
- * @desc: 用户模块前台控制器
+ * @desc: 用户模块前端控制器
  * @className: UserController
  * @author: RONALDO
  * @date: 2019-02-23 14:52
@@ -27,7 +27,7 @@ import static com.cheery.util.OtpUtil.otp;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr")
 @Api("用户模块Api")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private IUserService userService;
@@ -81,11 +81,7 @@ public class UserController {
     @PostMapping("/user")
     public ApiResult<?> getUserInfo(HttpSession session) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        } else {
-            return ApiResult.createBySuccessData(JSON.toJSON(currentUser));
-        }
+        return BaseController(currentUser, ApiResult.createBySuccessData(JSON.toJSON(currentUser)));
     }
 
     /**
@@ -148,10 +144,7 @@ public class UserController {
     @PutMapping("/respwds")
     public ApiResult<?> restPassword(HttpSession session, String oldPassword, String newPassword) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        }
-        return userService.restPassword(currentUser, oldPassword, newPassword);
+        return BaseController(currentUser, userService.restPassword(currentUser, oldPassword, newPassword));
     }
 
     /**
@@ -168,15 +161,11 @@ public class UserController {
     @PutMapping("/update")
     public ApiResult<?> updateUserInfo(HttpSession session, User user) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == currentUser) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
-        }
         ApiResult<?> response = userService.updateInfo(userService.getInfoById(currentUser.getId()), user);
         if (response.isSuccess()) {
-            // 更新session
             session.setAttribute(Constant.CURRENT_USER, response.getData());
         }
-        return response;
+        return BaseController(currentUser, response);
     }
 
 }
