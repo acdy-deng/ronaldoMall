@@ -1,6 +1,8 @@
 package com.cheery.controller.portal;
 
 import com.cheery.common.ApiResult;
+import com.cheery.common.Constant;
+import com.cheery.pojo.User;
 import com.cheery.service.ICommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,6 +10,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @desc: 评论模块前端控制器

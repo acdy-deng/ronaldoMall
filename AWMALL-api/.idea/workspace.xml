@@ -4,24 +4,24 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2473601e-c9d5-46af-81b0-dd22a91e1a6d" name="Default Changelist" comment="对接支付宝支付及生成付款码">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="2473601e-c9d5-46af-81b0-dd22a91e1a6d" name="Default Changelist" comment="支付宝sdk">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_9_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AWMALL-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AWMALL-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/common/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/common/ControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/common/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/common/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/common/PojoConvertVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/common/PojoConvertVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CommonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CommonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/CartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/CategoryController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/ShippingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/ShippingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/controller/portal/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/service/IMailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/service/IMailService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/service/IUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/MailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/MailServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/cheery/AwmallApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/cheery/AwmallApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/ProductServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cheery/service/impl/ProductServiceImpl$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AWMALL-web/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AWMALL-web/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AWMALL-web/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AWMALL-web/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AWMALL-web/dist/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/../AWMALL-web/dist/base.js" afterDir="false" />
@@ -85,71 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="29" column="23" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/FtpUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderItemRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/ControllerAdvice.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/OrderController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/OrderServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="151" column="57" selection-start-line="151" selection-start-column="57" selection-end-line="151" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="328">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -160,23 +100,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>assembleProductDetailVo</find>
-      <find>remove</find>
-      <find>get</find>
-      <find>getAllCheckedStatus</find>
-      <find>cartTotalPrice</find>
-      <find>Transactional</find>
-      <find>buyCount</find>
-      <find>quantity</find>
-      <find>AUTO_INCREMENT</find>
-      <find>product_comment</find>
       <find>update</find>
       <find>findQuestionByPhone</find>
       <find>getCartVoLimit</find>
@@ -197,6 +128,16 @@
       <find>filePath</find>
       <find>path</find>
       <find>private</find>
+      <find>评论</find>
+      <find>isSuccess</find>
+      <find>payment</find>
+      <find>shippingId</find>
+      <find>category_id</find>
+      <find>cartList</find>
+      <find>save</find>
+      <find>orderItem</find>
+      <find>assembleOrderItemVo</find>
+      <find>OrderItem</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,57 +146,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/PojoToVo.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/Md5Util.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/CommonError.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/ResponseCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/ApiResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/ApiCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/z.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/GlobalException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/TipsUtil.java" />
-        <option value="$PROJECT_DIR$/../../EMSYS/src/main/webapp/staticFile/js/student.js" />
-        <option value="$PROJECT_DIR$/../../EMSYS/src/main/webapp/view/student/list.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/ProductServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CategoryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CommentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CartServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/BaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/vo/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/UserRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/OtpUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/EmailUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/IMailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/MailServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/IUserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alipay/dev/trade/DemoHbRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alipay/trade/DemoHbRunner.java" />
         <option value="$PROJECT_DIR$/src/main/resources/zfbinfo.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ftp.properties" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/util/FTPUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/ProductRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alipay/trade/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/IOrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/pojo/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CategoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/pojo/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/Constant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/ApiStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/SnowFlakeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CommentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderItemVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/vo/ShippingVo.java" />
+        <option value="$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/util/DateTimeUtil.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/DateTimeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/GlobalException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/pojo/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/ShippingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CartServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/CartRepository.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cheery/AwmallApplicationTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/ProductCommentRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/pojo/OrderItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/StrengthenQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderProductVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/util/FtpUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/OrderServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderItemRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/BaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/ControllerAdvice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/IOrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderItemRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/ProductServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/pojo/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/OrderController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/OrderStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/common/PojoConvertVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cheery/service/impl/OrderServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -277,9 +218,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-52" />
     <option name="y" value="23" />
-    <option name="width" value="1859" />
+    <option name="width" value="1862" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -292,6 +234,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -406,58 +349,10 @@
               <item name="service" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cheery" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWMALL-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWMALL-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cheery" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -472,14 +367,14 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552314948501" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552483709152" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15118577" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="gradle.compiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -508,7 +403,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="AwmallApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AWMALL-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cheery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cheery" />
+      <option name="MAIN_CLASS_NAME" value="com.cheery.AwmallApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="AWMALL-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cheery.Application" />
@@ -519,6 +430,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AwmallApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -554,7 +470,12 @@
       <workItem from="1552109409842" duration="27582000" />
       <workItem from="1552145038356" duration="228000" />
       <workItem from="1552193218380" duration="7852000" />
-      <workItem from="1552273824239" duration="19161000" />
+      <workItem from="1552273824239" duration="19647000" />
+      <workItem from="1552360524938" duration="3070000" />
+      <workItem from="1552369223118" duration="7654000" />
+      <workItem from="1552377489705" duration="3758000" />
+      <workItem from="1552395536847" duration="6328000" />
+      <workItem from="1552465540877" duration="16143000" />
     </task>
     <task id="LOCAL-00001" summary="Perfecting User Module">
       <created>1551185753585</created>
@@ -640,13 +561,73 @@
       <option name="project" value="LOCAL" />
       <updated>1552314623131</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=" /">
+      <created>1552315208615</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1552315208615</updated>
+    </task>
+    <task id="LOCAL-00014" summary="添加otp码工具类">
+      <created>1552315423985</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1552315423985</updated>
+    </task>
+    <task id="LOCAL-00015" summary="支付宝sdk">
+      <created>1552315592427</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1552315592427</updated>
+    </task>
+    <task id="LOCAL-00016" summary="分类产品和评论模块">
+      <created>1552362126713</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1552362126713</updated>
+    </task>
+    <task id="LOCAL-00017" summary="抽离出Base controller">
+      <created>1552370327023</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1552370327023</updated>
+    </task>
+    <task id="LOCAL-00018" summary="创建待支付订单">
+      <created>1552470561300</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1552470561300</updated>
+    </task>
+    <task id="LOCAL-00019" summary="优化通用层代码">
+      <created>1552470704618</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1552470704618</updated>
+    </task>
+    <task id="LOCAL-00020" summary="添加雪花算法作为订单号">
+      <created>1552470854076</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1552470854076</updated>
+    </task>
+    <task id="LOCAL-00021" summary="完成订单模块">
+      <created>1552483566475</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1552483566475</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AwmallApplicationTests_contextLoads - 2019.03.11 at 15h 33m 45s.xml">
-      <configuration name="AwmallApplicationTests.contextLoads" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AwmallApplicationTests_contextLoads - 2019.03.11 at 16h 56m 29s.xml">
       <configuration name="AwmallApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
@@ -674,15 +655,26 @@
     <history-entry file="AwmallApplicationTests_contextLoads - 2019.03.11 at 22h 04m 34s.xml">
       <configuration name="AwmallApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AwmallApplicationTests_contextLoads - 2019.03.13 at 16h 44m 38s.xml">
+      <configuration name="AwmallApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="302104000" />
+    <option name="totallyTimeSpent" value="339543000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1859" height="1057" extended-state="6" />
-    <editor active="true" />
+    <frame x="-52" y="23" width="1862" height="1057" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4986226" visible="true" weight="0.2058338" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4986226" visible="true" weight="0.21648352" />
       <window_info id="Structure" order="1" sideWeight="0.5013774" side_tool="true" weight="0.1989011" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -692,20 +684,21 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32746115" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917626" visible="true" weight="0.2476684" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917626" visible="true" weight="0.2476684" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32953367" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3299595" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3299595" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50082374" side_tool="true" weight="0.25101215" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50082374" side_tool="true" weight="0.2507772" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3150259" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.32953367" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.3299595" />
       <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32953367" />
+      <window_info anchor="bottom" id="Statistic" order="16" weight="0.3284974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -779,300 +772,339 @@
     <MESSAGE value="对接支付宝支付" />
     <MESSAGE value="对接支付宝支付及生成付款码" />
     <MESSAGE value="全局异常捕获 优化控制层异常处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="全局异常捕获 优化控制层异常处理" />
+    <MESSAGE value=" /" />
+    <MESSAGE value="添加otp码工具类" />
+    <MESSAGE value="支付宝sdk" />
+    <MESSAGE value="分类产品和评论模块" />
+    <MESSAGE value="抽离出Base controller" />
+    <MESSAGE value="创建待支付订单" />
+    <MESSAGE value="优化通用层代码" />
+    <MESSAGE value="添加雪花算法作为订单号" />
+    <MESSAGE value="完成订单模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成订单模块" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/EmailUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/vo/CartVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
+        <state relative-caret-position="170">
+          <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderProductVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AWMALL-api.iml">
+    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/service/impl/OrderServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1369" />
+        <state relative-caret-position="433">
+          <caret line="173" column="53" selection-start-line="173" selection-start-column="44" selection-end-line="173" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderItemVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="170">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#552#553#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/BigDecimalUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="187">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/DateTimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/EmailUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/FtpUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-567">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/Md5Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/OtpUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="204" selection-start-line="204" selection-end-line="239" selection-end-column="17" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp" />
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/resources/applicationContext.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/SnowFlakeUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="40" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="40" />
+        <state relative-caret-position="215">
+          <caret line="89" column="6" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/applicationContext.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/vo/Test.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/UpdateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="49" column="9" lean-forward="true" selection-start-line="44" selection-start-column="7" selection-end-line="49" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-6">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/ICartService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="20" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="20" />
+        <state relative-caret-position="24">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/alipay-sdk-java-3.3.0-source.jar!/com/alipay/api/AlipayResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/CartServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-448">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/CartRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-414">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/Cart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/config/DruidConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/config/SwaggerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/ApiResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-686">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/StrengthenQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="194" column="22" selection-start-line="194" selection-start-column="22" selection-end-line="194" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/TokenCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/ApiStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/Email.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback-spring.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/ControllerAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="168" column="22" lean-forward="true" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+          <folding>
+            <element signature="e#1324#1325#0" expanded="true" />
+            <element signature="e#1384#1385#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2259#2260#0" expanded="true" />
+            <element signature="e#3146#3147#0" expanded="true" />
+            <element signature="e#3214#3215#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3548#3549#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CommonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ShippingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+          <folding>
+            <element signature="e#2291#2292#0" expanded="true" />
+            <element signature="e#2347#2348#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+          <folding>
+            <element signature="method#user#0;class#UserController#0" />
+            <element signature="e#2393#2394#0" expanded="true" />
+            <element signature="e#2466#2467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="53" column="75" selection-start-line="52" selection-start-column="11" selection-end-line="53" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/IProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="16" selection-start-line="16" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/IOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/ProductServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="75" column="5" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="75" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/ProductRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="14" column="107" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="107" />
+          <caret line="14" column="106" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="106" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/TokenCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/util/FTPUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/alipay/demo/trade/DemoHbRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ftp.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="923">
-          <caret line="58" column="45" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
-          <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/BaseEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="22" selection-start-line="22" selection-end-line="24" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="21" selection-start-line="21" selection-end-line="26" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="964">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/IOrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/alipay-trade-sdk-20161215-source.jar!/com/alipay/demo/trade/model/GoodsDetail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/alipay-sdk-java-3.3.0-source.jar!/com/alipay/api/domain/OrderItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="111" column="7" lean-forward="true" selection-start-line="111" selection-start-column="7" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/zfbinfo.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/service/impl/OrderServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="515" selection-start-line="515" selection-end-line="525" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/CategoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alipay/trade/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alipay/trade/DemoHbRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/慕课网 企业级电商项目实战/项目后端/k13d6t/src/main/java/com/mmall/controller/portal/OrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="977">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/UserRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="31" />
+          <caret line="18" column="67" selection-start-line="18" selection-start-column="67" selection-end-line="18" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderItemRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/OrderItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar!/com/mysql/jdbc/Util.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="267" selection-start-line="267" selection-end-line="267" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/CartRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="48" column="101" selection-start-line="48" selection-start-column="83" selection-end-line="48" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.18.RELEASE/spring-data-jpa-1.11.18.RELEASE.jar!/org/springframework/data/jpa/repository/support/CrudMethodMetadataPostProcessor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/cheery/AwmallApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        <state relative-caret-position="430">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1081,78 +1113,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="22" />
+        <state relative-caret-position="374">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/ProductServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="76" selection-start-line="76" selection-end-line="78" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/OrderStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/pojo/OrderItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/PojoConvertVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="91" column="74" selection-start-line="91" selection-start-column="74" selection-end-line="91" selection-end-column="74" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/PayController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/vo/OrderVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/util/FtpUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="233">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/service/impl/OrderServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="151" column="57" selection-start-line="151" selection-start-column="57" selection-end-line="151" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="169" column="36" selection-start-line="169" selection-start-column="24" selection-end-line="169" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderItemRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/controller/portal/OrderController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/repository/OrderRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cheery/common/ControllerAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="328">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>

@@ -10,18 +10,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @desc: 控制层父类
+ * @desc: 异常捕获
  * @className: BaseController
  * @author: RONALDO
  * @date: 2019-03-12 12:01
  */
 @Component
 @org.springframework.web.bind.annotation.ControllerAdvice
-public class BaseController {
+public class ControllerAdvice {
 
     protected ApiResult<?> BaseController(User user, ApiResult result) {
         if (null == user) {
-            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
+            //throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
         }
         return result;
     }

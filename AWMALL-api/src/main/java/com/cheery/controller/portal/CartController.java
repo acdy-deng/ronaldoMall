@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-
 /**
  * @desc: 购物车模块前端控制器
  * @className: CartController
@@ -23,10 +22,21 @@ import javax.servlet.http.HttpSession;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/cart")
 @Api("购物车模块Api")
-public class CartController extends BaseController {
+public class CartController {
 
     @Autowired
     private ICartService cartService;
+
+    @Autowired
+    private HttpSession session;
+
+    private User user() {
+        User user = (User) session.getAttribute(Constant.CURRENT_USER);
+        if (null == user) {
+            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
+        }
+        return user;
+    }
 
     /**
      * desc: 获取当前用户的购物车列表
@@ -38,9 +48,8 @@ public class CartController extends BaseController {
      */
     @ApiOperation(value = "获取当前用户的购物车列表")
     @PostMapping("/list")
-    public ApiResult<?> list(HttpSession session) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.cartInfo(currentUser.getId()));
+    public ApiResult<?> list() {
+        return cartService.cartInfo(user().getId());
     }
 
     /**
@@ -53,9 +62,8 @@ public class CartController extends BaseController {
      */
     @ApiOperation(value = "获取购物车商品总数")
     @PostMapping("/count")
-    public ApiResult<?> count(HttpSession session) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.countProduct(currentUser.getId()));
+    public ApiResult<?> count() {
+        return cartService.countProduct(user().getId());
     }
 
     /**
@@ -73,9 +81,8 @@ public class CartController extends BaseController {
             @ApiImplicitParam(name = "count", value = "总数", dataType = "Integer")
     })
     @GetMapping("/add")
-    public ApiResult<?> add(HttpSession session, Long productId, Integer count) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.add(currentUser.getId(), productId, count));
+    public ApiResult<?> add(Long productId, Integer count) {
+        return cartService.add(user().getId(), productId, count);
     }
 
     /**
@@ -92,9 +99,8 @@ public class CartController extends BaseController {
             @ApiImplicitParam(name = "count", value = "总数", dataType = "Integer")
     })
     @PutMapping("/update")
-    public ApiResult<?> update(HttpSession session, Long productId, Integer count) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.update(currentUser.getId(), productId, count));
+    public ApiResult<?> update(Long productId, Integer count) {
+        return cartService.update(user().getId(), productId, count);
     }
 
     /**
@@ -108,9 +114,8 @@ public class CartController extends BaseController {
     @ApiOperation(value = "从购物车删除商品")
     @ApiImplicitParam(name = "productIds", value = "产品ids", dataType = "Long")
     @DeleteMapping("/delete")
-    public ApiResult<?> delete(HttpSession session, Long[] productId) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.delete(currentUser.getId(), productId));
+    public ApiResult<?> delete(Long[] productId) {
+        return cartService.delete(user().getId(), productId);
     }
 
     /**
@@ -123,9 +128,8 @@ public class CartController extends BaseController {
      */
     @ApiOperation(value = "购物车全选")
     @GetMapping("/select_all")
-    public ApiResult<?> selectAll(HttpSession session) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.selectOrUnselectAll(Constant.Cart.CHECKED, currentUser.getId()));
+    public ApiResult<?> selectAll() {
+        return cartService.selectOrUnselectAll(Constant.Cart.CHECKED, user().getId());
     }
 
     /**
@@ -138,9 +142,8 @@ public class CartController extends BaseController {
      */
     @ApiOperation(value = "购物车全反选")
     @GetMapping("/un_select_all")
-    public ApiResult<?> unSelectAll(HttpSession session) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.selectOrUnselectAll(Constant.Cart.UN_CHECKED, currentUser.getId()));
+    public ApiResult<?> unSelectAll() {
+        return cartService.selectOrUnselectAll(Constant.Cart.UN_CHECKED, user().getId());
     }
 
     /**
@@ -154,9 +157,8 @@ public class CartController extends BaseController {
     @ApiOperation(value = "购物车单选")
     @ApiImplicitParam(name = "productId", value = "产品id", dataType = "Integer")
     @GetMapping("/select_one")
-    public ApiResult<?> selectOne(HttpSession session, Integer productId) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.selectOrUnselectOne(Constant.Cart.CHECKED, currentUser.getId(), productId));
+    public ApiResult<?> selectOne(Integer productId) {
+        return cartService.selectOrUnselectOne(Constant.Cart.CHECKED, user().getId(), productId);
     }
 
     /**
@@ -170,9 +172,8 @@ public class CartController extends BaseController {
     @ApiOperation(value = "购物车单反选")
     @ApiImplicitParam(name = "productId", value = "产品id", dataType = "Integer")
     @GetMapping("/un_select_one")
-    public ApiResult<?> unSelectOne(HttpSession session, Integer productId) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, cartService.selectOrUnselectOne(Constant.Cart.UN_CHECKED, currentUser.getId(), productId));
+    public ApiResult<?> unSelectOne(Integer productId) {
+        return cartService.selectOrUnselectOne(Constant.Cart.UN_CHECKED, user().getId(), productId);
     }
 
 }

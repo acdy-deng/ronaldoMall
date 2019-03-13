@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigInteger;
 
 /**
  * @desc: 支付模块前端控制器
@@ -24,10 +23,21 @@ import java.math.BigInteger;
 @RestController
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @Api("支付模块Api")
-public class PayController extends BaseController {
+public class PayController {
 
     @Autowired
     private IOrderService orderService;
+
+    @Autowired
+    private HttpSession session;
+
+    private User user() {
+        User user = (User) session.getAttribute(Constant.CURRENT_USER);
+        if (null == user) {
+            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
+        }
+        return user;
+    }
 
     /**
      * desc: 支付
@@ -41,9 +51,7 @@ public class PayController extends BaseController {
     @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "orderNo")
     @GetMapping("/pay")
     public ApiResult<?> pay(HttpServletRequest request, HttpSession session, long orderNo) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, orderService.pay(orderNo, currentUser.getId(),
-                request.getSession().getServletContext().getRealPath("upload")));
+        return orderService.pay(orderNo, user().getId(), request.getSession().getServletContext().getRealPath("upload"));
     }
 
 }

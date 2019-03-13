@@ -83,8 +83,7 @@ public class PojoConvertVo {
      * @auther RONALDO
      * @date: 2019-03-12 22:00
      */
-
-    public OrderVo assembleProductOrderVo(Order order, List<OrderItem> orderItemList) {
+    public OrderVo assembleOrderVo(Order order, List<OrderItem> orderItemList) {
         OrderVo vo = new OrderVo();
         vo.setOrderNo(order.getOrderNo());
         vo.setPayment(order.getPayment());
@@ -95,12 +94,12 @@ public class PojoConvertVo {
         Shipping shipping = shippingRepository.findOne(order.getShippingId());
         if (null != shipping) {
             vo.setUserName(shipping.getReceiverName());
-            vo.setShippingVo(this.assembleProductShippingVo(shipping));
+            vo.setShippingVo(this.assembleShippingVo(shipping));
         }
         vo.setImageHost("http://106.13.45.248/img/");
         List<OrderItemVo> orderItemVoList = Lists.newArrayList();
         for (OrderItem orderItem : orderItemList) {
-            orderItemVoList.add(this.assembleProductOrderItemVo(orderItem));
+            orderItemVoList.add(this.assembleOrderItemVo(orderItem));
         }
         vo.setOrderItemVoList(orderItemVoList);
         return vo;
@@ -114,7 +113,7 @@ public class PojoConvertVo {
      * @auther RONALDO
      * @date: 2019-03-12 22:18
      */
-    private ShippingVo assembleProductShippingVo(Shipping shipping) {
+    private ShippingVo assembleShippingVo(Shipping shipping) {
         ShippingVo vo = new ShippingVo();
         vo.setReceiverAddress(shipping.getReceiverAddress());
         vo.setReceiverCity(shipping.getReceiverCity());
@@ -135,7 +134,7 @@ public class PojoConvertVo {
      * @auther RONALDO
      * @date: 2019-03-12 22:35
      */
-    private OrderItemVo assembleProductOrderItemVo(OrderItem orderItem) {
+    public OrderItemVo assembleOrderItemVo(OrderItem orderItem) {
         OrderItemVo vo = new OrderItemVo();
         vo.setCreatetime(orderItem.getCreatetime());
         vo.setCurrentUnitPrice(orderItem.getCurrentUnitPrice());

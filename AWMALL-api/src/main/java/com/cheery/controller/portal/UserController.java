@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import static com.cheery.util.OtpUtil.otp;
 
-
 /**
  * @desc: 用户模块前端控制器
  * @className: UserController
@@ -27,13 +26,24 @@ import static com.cheery.util.OtpUtil.otp;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr")
 @Api("用户模块Api")
-public class UserController extends BaseController {
+public class UserController {
 
     @Autowired
     private IUserService userService;
 
     @Autowired
     private IMailService mailService;
+
+    @Autowired
+    private HttpSession session;
+
+    private User user() {
+        User user = (User) session.getAttribute(Constant.CURRENT_USER);
+        if (null == user) {
+            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
+        }
+        return user;
+    }
 
     /**
      * desc: 用户登出
@@ -47,7 +57,7 @@ public class UserController extends BaseController {
     @GetMapping("/logout")
     public ApiResult<?> logout(HttpSession session) {
         session.removeAttribute(Constant.CURRENT_USER);
-        if (null != session.getAttribute(Constant.CURRENT_USER)) {
+        if (null != user()) {
             return ApiResult.createBySuccessMsg("登出异常,请稍候再试");
         } else {
             return ApiResult.createBySuccessMsg("登出成功");
@@ -72,16 +82,14 @@ public class UserController extends BaseController {
     /**
      * desc: 获取用户信息
      *
-     * @param session session会话
      * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-02-24 20:07
      */
     @ApiOperation(value = "获取用户信息")
     @PostMapping("/user")
-    public ApiResult<?> getUserInfo(HttpSession session) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, ApiResult.createBySuccessData(JSON.toJSON(currentUser)));
+    public ApiResult<?> getUserInfo() {
+        return ApiResult.createBySuccessData(JSON.toJSON(user()));
     }
 
     /**
@@ -129,7 +137,6 @@ public class UserController extends BaseController {
     /**
      * desc: 登录状态下重置密码
      *
-     * @param session     session对象
      * @param oldPassword 原密码
      * @param newPassword 新密码
      * @return ApiResult<?>
@@ -142,9 +149,8 @@ public class UserController extends BaseController {
             @ApiImplicitParam(name = "newPassword", value = "新密码", required = true, dataType = "String")
     })
     @PutMapping("/respwds")
-    public ApiResult<?> restPassword(HttpSession session, String oldPassword, String newPassword) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        return BaseController(currentUser, userService.restPassword(currentUser, oldPassword, newPassword));
+    public ApiResult<?> restPassword(String oldPassword, String newPassword) {
+        return userService.restPassword(user(), oldPassword, newPassword);
     }
 
     /**
@@ -160,12 +166,11 @@ public class UserController extends BaseController {
     @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PutMapping("/update")
     public ApiResult<?> updateUserInfo(HttpSession session, User user) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        ApiResult<?> response = userService.updateInfo(userService.getInfoById(currentUser.getId()), user);
+        ApiResult<?> response = userService.updateInfo(userService.getInfoById(user().getId()), user);
         if (response.isSuccess()) {
             session.setAttribute(Constant.CURRENT_USER, response.getData());
         }
-        return BaseController(currentUser, response);
+        return response;
     }
 
 }

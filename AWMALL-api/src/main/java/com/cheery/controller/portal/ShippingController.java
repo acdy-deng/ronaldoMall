@@ -23,10 +23,21 @@ import javax.servlet.http.HttpSession;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr/address")
 @Api("用户收货地址模块Api")
-public class ShippingController extends BaseController {
+public class ShippingController {
 
     @Autowired
     private IShippingService shippingService;
+
+    @Autowired
+    private HttpSession session;
+
+    private User user() {
+        User user = (User) session.getAttribute(Constant.CURRENT_USER);
+        if (null == user) {
+            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
+        }
+        return user;
+    }
 
     /**
      * desc: 添加收货地址
@@ -39,9 +50,8 @@ public class ShippingController extends BaseController {
     @ApiOperation(value = "添加收货地址")
     @PostMapping("/add")
     public ApiResult<?> add(HttpSession session, Shipping shipping) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        shipping.setUserId(currentUser.getId());
-        return BaseController(currentUser, shippingService.addAddress(shipping));
+        shipping.setUserId(user().getId());
+        return shippingService.addAddress(shipping);
     }
 
     /**
@@ -55,9 +65,8 @@ public class ShippingController extends BaseController {
     @ApiOperation(value = "修改收货地址")
     @PostMapping("/update")
     public ApiResult<?> update(HttpSession session, Shipping shipping) {
-        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
-        shipping.setUserId(currentUser.getId());
-        return BaseController(currentUser, shippingService.updateAddress(shipping));
+        shipping.setUserId(user().getId());
+        return shippingService.updateAddress(shipping);
     }
 
     /**
@@ -71,8 +80,8 @@ public class ShippingController extends BaseController {
     @ApiOperation(value = "删除收货地址")
     @ApiImplicitParam(name = "id", value = "收货地址id", required = true, dataType = "Long")
     @DeleteMapping("/delete")
-    public ApiResult<?> delete(HttpSession session, Long id) {
-        return BaseController((User) session.getAttribute(Constant.CURRENT_USER), shippingService.deleteAddress(id));
+    public ApiResult<?> delete(Long id) {
+        return shippingService.deleteAddress(id);
     }
 
     /**
