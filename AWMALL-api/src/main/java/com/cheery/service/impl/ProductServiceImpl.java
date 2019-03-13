@@ -46,7 +46,7 @@ public class ProductServiceImpl implements IProductService {
         Page<Product> products = repository.findAll(new Specification<Product>() {
             @Override
             public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> list = new ArrayList<>();
+                List<Predicate> list = Lists.newArrayList();
                 if (null != keyWords && StringUtils.isEmpty(keyWords)) {
                     list.add(criteriaBuilder.like(root.get("name"), "%" + keyWords.trim() + "%"));
                 }

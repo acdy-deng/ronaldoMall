@@ -2,8 +2,6 @@ package com.cheery.service;
 
 import com.cheery.common.ApiResult;
 
-import java.math.BigInteger;
-
 /**
  * @desc: 订单业务逻辑层接口
  * @className: IOrderService
@@ -22,6 +20,51 @@ public interface IOrderService {
      * @date: 2019-03-12 14:02
      */
     ApiResult<?> createOrder(Long userId, Long shippingId);
+
+    /**
+     * desc: 取消订单
+     *
+     * @param userId  用户id
+     * @param orderNo 订单号
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-13 18:23
+     */
+    ApiResult<?> cancelOrder(Long userId, Long orderNo);
+
+    /**
+     * desc: 获取购物车商品信息
+     *
+     * @param userId  用户id
+     * @param orderNo 订单号
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-13 18:37
+     */
+    ApiResult<?> getOrderInfo(Long userId, Long orderNo);
+
+    /**
+     * desc: 订单详情
+     *
+     * @param userId  用户id
+     * @param orderNo 订单号
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-13 19:07
+     */
+    ApiResult<?> getOrderDetails(Long userId, Long orderNo);
+
+    /**
+     * desc: 订单列表
+     *
+     * @param page   页码
+     * @param size   每页条数
+     * @param userId 用户id
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-13 19:07
+     */
+    ApiResult<?> getOrderList(Integer page, Integer size, Long userId);
 
     /**
      * desc: 支付

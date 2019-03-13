@@ -68,6 +68,9 @@ public class Product extends BaseEntity implements Serializable {
     @Column(name = "sale")
     private Integer sale;
 
+    @Column(name = "status")
+    private Integer status;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "category_id")
     private Category category;

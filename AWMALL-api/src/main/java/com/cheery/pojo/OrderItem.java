@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * @desc: 订单详情实体
@@ -22,7 +21,7 @@ import java.math.BigInteger;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
+@Table(name = "order_item")
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(AuditingEntityListener.class)
 public class OrderItem extends BaseEntity {
@@ -31,7 +30,7 @@ public class OrderItem extends BaseEntity {
     private Long userId;
 
     @Column(name = "order_no")
-    private BigInteger orderNo;
+    private long orderNo;
 
     @Column(name = "product_id")
     private Long productId;

@@ -10,10 +10,7 @@ import com.alipay.demo.trade.model.result.AlipayF2FPrecreateResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
-import com.cheery.common.ApiResult;
-import com.cheery.common.OrderStatus;
-import com.cheery.common.PojoConvertVo;
-import com.cheery.common.StrengthenQuery;
+import com.cheery.common.*;
 import com.cheery.pojo.Cart;
 import com.cheery.pojo.Order;
 import com.cheery.pojo.OrderItem;
@@ -25,15 +22,27 @@ import com.cheery.repository.ProductRepository;
 import com.cheery.service.IOrderService;
 import com.cheery.util.BigDecimalUtil;
 import com.cheery.util.FtpUtil;
+import com.cheery.vo.OrderItemVo;
+import com.cheery.vo.OrderProductVo;
+import com.cheery.vo.OrderVo;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
@@ -107,7 +116,76 @@ public class OrderServiceImpl implements IOrderService {
         strengthenQuery.reduceProductStoct(orderItemList);
         // 清空购物车
         strengthenQuery.clearCart(cartList);
-        return ApiResult.createBySuccessData(pojoConvertVo.assembleProductOrderVo(order, orderItemList));
+        return ApiResult.createBySuccessData(pojoConvertVo.assembleOrderVo(order, orderItemList));
+    }
+
+    @Override
+    public ApiResult<?> cancelOrder(Long userId, Long orderNo) {
+        Order order = orderRepository.findByUserIdAndOrderNo(userId, orderNo);
+        if (null == order) {
+            return ApiResult.createByErrorMsg("该订单不存在");
+        }
+        Order newOrder = new Order();
+        newOrder.setId(order.getId());
+        newOrder.setStatus(OrderStatus.ORDER_CLOSE.getCode());
+        if (null == orderRepository.save(newOrder)) {
+            return ApiResult.createByErrorMsg("订单取消失败");
+        }
+        return ApiResult.createBySuccessMsg("订单取消成功");
+    }
+
+    @Override
+    public ApiResult<?> getOrderInfo(Long userId, Long orderNo) {
+        OrderProductVo vo = new OrderProductVo();
+        List<OrderItemVo> orderItemVoList = Lists.newArrayList();
+        // 从购物车中获取数据
+        List<Cart> cartList = cartRepository.findAllByUserIdAndChecked(userId, 1);
+        ApiResult<List<OrderItem>> result = strengthenQuery.getCartOrderItem(userId, cartList);
+        if (!result.isSuccess()) {
+            return result;
+        }
+        // 计算该订单总价
+        BigDecimal payment = new BigDecimal("0");
+        for (OrderItem item : result.getData()) {
+            payment = BigDecimalUtil.add(payment.doubleValue(), item.getTotalPrice().doubleValue());
+            orderItemVoList.add(pojoConvertVo.assembleOrderItemVo(item));
+        }
+        vo.setProductTotalPrice(payment);
+        vo.setOrderItemVoList(orderItemVoList);
+        vo.setImageHost("http://106.13.45.248/img/");
+        return ApiResult.createBySuccessData(vo);
+    }
+
+    @Override
+    public ApiResult<?> getOrderDetails(Long userId, Long orderNo) {
+        Order order = orderRepository.findByUserIdAndOrderNo(userId, orderNo);
+        if (null != order) {
+            List<OrderItem> orderItemList = orderItemRepository.findAllByUserIdAndOrderNo(userId, orderNo);
+            return ApiResult.createBySuccessData(pojoConvertVo.assembleOrderVo(order, orderItemList));
+        }
+        return ApiResult.createByErrorMsg("该订单不存在");
+    }
+
+    @Override
+    public ApiResult<?> getOrderList(Integer page, Integer size, Long userId) {
+        Pageable pageable = new PageRequest(page, size);
+        List<Order> orderList = orderRepository.findAllByUserId(userId);
+        List<OrderVo> orderVoList = Lists.newArrayList();
+        for (Order order : orderList) {
+            Page<OrderItem> orderItems = orderItemRepository.findAll(new Specification<OrderItem>() {
+                @Override
+                public Predicate toPredicate(Root<OrderItem> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                    List<Predicate> list = Lists.newArrayList();
+                    list.add(criteriaBuilder.equal(root.get("userId"), userId));
+                    Predicate[] predicates = new Predicate[list.size()];
+                    return criteriaBuilder.and(list.toArray(predicates));
+                }
+            }, pageable);
+            orderVoList.add(pojoConvertVo.assembleOrderVo(order, orderItems.getContent()));
+        }
+        PageInfo pageResult = new PageInfo(orderVoList);
+        pageResult.setList(orderVoList);
+        return ApiResult.createBySuccessMsgAndData("查询成功", pageResult);
     }
 
     @Override

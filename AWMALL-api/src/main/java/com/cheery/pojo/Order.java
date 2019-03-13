@@ -1,14 +1,10 @@
 package com.cheery.pojo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -19,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
 public class Order {
 
@@ -29,13 +25,13 @@ public class Order {
     private Long id;
 
     @Column(name = "order_no")
-    private BigInteger orderNo;
+    private Long orderNo;
 
     @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "shipping_id")
-    private Integer shippingId;
+    private Long shippingId;
 
     @Column(name = "payment")
     private BigDecimal payment;
@@ -45,11 +41,5 @@ public class Order {
 
     @Column(name = "payment_time")
     private Date paymentTime;
-
-    @Column(name = "end_time")
-    private Date endTime;
-
-    @Column(name = "close_time")
-    private Date closeTime;
 
 }

@@ -1,7 +1,9 @@
 package com.cheery.repository;
 
 import com.cheery.pojo.OrderItem;
+import com.cheery.pojo.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * @date: 2019-03-11 20:38
  */
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long>, JpaSpecificationExecutor<OrderItem> {
 
     /**
      * desc: 根据用户id和订单id查询订单详情
