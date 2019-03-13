@@ -1,7 +1,6 @@
 package com.cheery.service.impl;
 
 import com.cheery.common.ApiResult;
-import com.cheery.common.TokenCache;
 import com.cheery.pojo.User;
 import com.cheery.repository.UserRepository;
 import com.cheery.service.IUserService;
@@ -45,6 +44,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> register(User user) {
         // 设置权限为0
         user.setRole(Constant.Role.ROLE_CUSTOMER);
@@ -93,6 +93,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> updateInfo(User currentUser, User user) {
         // 保证邮箱是用户系统唯一的
         if (0 < repository.countByEmailIsOccupy(user.getEmail(), user.getId())) {

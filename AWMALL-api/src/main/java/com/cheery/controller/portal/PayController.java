@@ -40,7 +40,7 @@ public class PayController extends BaseController {
     @ApiOperation(value = "支付")
     @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "orderNo")
     @GetMapping("/pay")
-    public ApiResult<?> pay(HttpServletRequest request, HttpSession session, BigInteger orderNo) {
+    public ApiResult<?> pay(HttpServletRequest request, HttpSession session, long orderNo) {
         User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
         return BaseController(currentUser, orderService.pay(orderNo, currentUser.getId(),
                 request.getSession().getServletContext().getRealPath("upload")));

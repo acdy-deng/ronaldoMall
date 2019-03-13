@@ -5,8 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
-
 /**
  * @desc: 订单数据访问层接口
  * @className: OrderRepository
@@ -26,6 +24,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * @date: 2019-03-11 20:07
      */
     @Query(value = "SELECT * FROM `order` WHERE user_id = ? AND order_no = ?", nativeQuery = true)
-    Order findByUserIdAndOrderNo(Long userId, BigInteger orderNo);
+    Order findByUserIdAndOrderNo(Long userId, long orderNo);
 
 }

@@ -1,6 +1,7 @@
 package com.cheery.service.impl;
 
 import com.cheery.common.ApiResult;
+import com.cheery.common.PojoConvertVo;
 import com.cheery.pojo.Product;
 import com.cheery.repository.ProductRepository;
 import com.cheery.service.IProductService;
@@ -36,6 +37,9 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Autowired
+    private PojoConvertVo pojoConvertVo;
+
     @Override
     public ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product) {
         Pageable pageable = new PageRequest(page, size);
@@ -67,7 +71,7 @@ public class ProductServiceImpl implements IProductService {
         }, pageable);
         List<ProductListVo> list = Lists.newArrayList();
         for (Product i : products.getContent()) {
-            ProductListVo productListVo = assembleProductListVo(i);
+            ProductListVo productListVo = pojoConvertVo.assembleProductListVo(i);
             list.add(productListVo);
         }
         PageInfo pageResult = new PageInfo(list);
@@ -81,7 +85,7 @@ public class ProductServiceImpl implements IProductService {
         if (null == product) {
             return ApiResult.createByErrorMsg("该商品已下架或删除");
         }
-        return ApiResult.createBySuccessMsgAndData("查询成功", assembleProductDetailsVo(product));
+        return ApiResult.createBySuccessMsgAndData("查询成功", pojoConvertVo.assembleProductDetailsVo(product));
     }
 
 }

@@ -27,6 +27,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
      * @date: 2019-03-11 20:07
      */
     @Query(value = "SELECT * FROM order_item WHERE user_id = ? AND order_no = ?", nativeQuery = true)
-    List<OrderItem> findAllByUserIdAndOrderNo(Long userId, BigInteger orderNo);
+    List<OrderItem> findAllByUserIdAndOrderNo(Long userId, long orderNo);
 
 }

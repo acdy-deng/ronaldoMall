@@ -13,15 +13,26 @@ import java.math.BigInteger;
 public interface IOrderService {
 
     /**
+     * desc: 创建订单
+     *
+     * @param userId     用户id
+     * @param shippingId 购物车id
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-12 14:02
+     */
+    ApiResult<?> createOrder(Long userId, Long shippingId);
+
+    /**
      * desc: 支付
      *
      * @param orderNo 订单号
      * @param userId  用户id
-     * @param path    路径
+     * @param path    基础路径
      * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-11 20:04
      */
-    ApiResult<?> pay(BigInteger orderNo, Long userId, String path);
+    ApiResult<?> pay(long orderNo, Long userId, String path);
 
 }

@@ -3,6 +3,7 @@ package com.cheery.service.impl;
 import com.cheery.common.ApiResult;
 import com.cheery.common.Constant;
 import com.cheery.common.PojoConvertVo;
+import com.cheery.common.StrengthenQuery;
 import com.cheery.pojo.Cart;
 import com.cheery.repository.CartRepository;
 import com.cheery.service.ICartService;
@@ -24,11 +25,11 @@ public class CartServiceImpl implements ICartService {
     private CartRepository repository;
 
     @Autowired
-    private PojoConvertVo pojoToVo;
+    private StrengthenQuery strengthenQuery;
 
     @Override
     public ApiResult<?> cartInfo(Long userId) {
-        return ApiResult.createBySuccessMsgAndData("操作成功", pojoToVo.getCartVoLimit(userId));
+        return ApiResult.createBySuccessMsgAndData("操作成功", strengthenQuery.getCartVoLimit(userId));
     }
 
     @Override
@@ -72,14 +73,12 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> selectOrUnselectAll(Integer checked, Long userId) {
         repository.selectOrUnselectAll(checked, userId);
         return this.cartInfo(userId);
     }
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> selectOrUnselectOne(Integer checked, Long userId, Integer productId) {
         repository.selectOrUnselectOne(checked, userId, productId);
         return this.cartInfo(userId);

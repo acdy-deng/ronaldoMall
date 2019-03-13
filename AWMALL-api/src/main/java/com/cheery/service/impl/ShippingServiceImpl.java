@@ -1,6 +1,6 @@
 package com.cheery.service.impl;
 
-import com.cheery.common.ApiCode;
+import com.cheery.common.ApiStatus;
 import com.cheery.common.ApiResult;
 import com.cheery.pojo.Shipping;
 import com.cheery.repository.ShippingRepository;
@@ -58,7 +58,7 @@ public class ShippingServiceImpl implements IShippingService {
     @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> deleteAddress(Long id) {
         if (null == id) {
-            return ApiResult.createByErrorCodeMsg(ApiCode.ILLEGAL_ARGUMENT.getCode(), ApiCode.ILLEGAL_ARGUMENT.getDesc());
+            return ApiResult.createByErrorCodeMsg(ApiStatus.ILLEGAL_ARGUMENT.getCode(), ApiStatus.ILLEGAL_ARGUMENT.getDesc());
         }
         repository.delete(id);
         return ApiResult.createBySuccessMsg("删除地址成功");

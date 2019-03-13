@@ -1,6 +1,7 @@
 package com.cheery.controller.portal;
 
 import com.cheery.common.*;
+import com.cheery.pojo.User;
 import com.cheery.service.IOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -37,10 +38,11 @@ public class OrderController extends BaseController {
      * @date: 2019-03-12 11:59
      */
     @ApiOperation(value = "新增订单")
-    @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "orderNo")
+    @ApiImplicitParam(name = "shippingId", value = "购物车id", dataType = "shippingId")
     @GetMapping("/add")
-    public void add(HttpSession session, Integer shippingId) {
-//        BaseController((User) session.getAttribute(Constant.CURRENT_USER), new ApiResult());
+    public ApiResult<?> add(HttpSession session, Long shippingId) {
+        User currentUser = (User) session.getAttribute(Constant.CURRENT_USER);
+        return BaseController(currentUser, orderService.createOrder(currentUser.getId(), shippingId));
     }
 
 }

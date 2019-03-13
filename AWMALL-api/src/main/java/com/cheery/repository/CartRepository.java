@@ -97,4 +97,15 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
      */
     @Query("select NULLIF(sum(quantity),0) from Cart where userId = ?1")
     int countProduct(Long userId);
+
+    /**
+     * desc: 根据用户id从购物车中查询已经勾选的产品
+     *
+     * @param userId  用户id
+     * @param checked 是否选中
+     * @return List<Cart>
+     * @auther RONALDO
+     * @date: 2019-03-12 14:06
+     */
+    List<Cart> findAllByUserIdAndChecked(Long userId, Integer checked);
 }

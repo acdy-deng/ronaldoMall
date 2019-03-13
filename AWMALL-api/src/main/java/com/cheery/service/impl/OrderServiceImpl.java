@@ -8,15 +8,20 @@ import com.alipay.demo.trade.model.GoodsDetail;
 import com.alipay.demo.trade.model.builder.AlipayTradePrecreateRequestBuilder;
 import com.alipay.demo.trade.model.result.AlipayF2FPrecreateResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
-import com.alipay.demo.trade.service.impl.AlipayMonitorServiceImpl;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
-import com.alipay.demo.trade.service.impl.AlipayTradeWithHBServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
 import com.cheery.common.ApiResult;
+import com.cheery.common.OrderStatus;
+import com.cheery.common.PojoConvertVo;
+import com.cheery.common.StrengthenQuery;
+import com.cheery.pojo.Cart;
 import com.cheery.pojo.Order;
 import com.cheery.pojo.OrderItem;
+import com.cheery.pojo.Product;
+import com.cheery.repository.CartRepository;
 import com.cheery.repository.OrderItemRepository;
 import com.cheery.repository.OrderRepository;
+import com.cheery.repository.ProductRepository;
 import com.cheery.service.IOrderService;
 import com.cheery.util.BigDecimalUtil;
 import com.cheery.util.FtpUtil;
@@ -27,13 +32,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.cheery.util.SnowFlakeUtil.snowFlake;
 
 /**
  * @desc: 订单业务逻辑层接口实现
@@ -46,6 +56,21 @@ public class OrderServiceImpl implements IOrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private StrengthenQuery strengthenQuery;
+
+    @Autowired
+    private PojoConvertVo pojoConvertVo;
+
     private static AlipayTradeService tradeService;
 
     static {
@@ -53,26 +78,51 @@ public class OrderServiceImpl implements IOrderService {
         tradeService = new AlipayTradeServiceImpl.ClientBuilder().build();
     }
 
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private OrderItemRepository orderItemRepository;
+    @Override
+    @Transactional(rollbackOn = Exception.class)
+    public ApiResult<?> createOrder(Long userId, Long shippingId) {
+        // 从购物车中获取数据
+        List<Cart> cartList = cartRepository.findAllByUserIdAndChecked(userId, 1);
+        ApiResult<List<OrderItem>> result = strengthenQuery.getCartOrderItem(userId, cartList);
+        if (!result.isSuccess()) {
+            return result;
+        }
+        // 计算该订单总价
+        List<OrderItem> orderItemList = result.getData();
+        if (CollectionUtils.isEmpty(orderItemList)) {
+            return ApiResult.createByErrorMsg("购物车为空");
+        }
+        BigDecimal payment = strengthenQuery.getOrderTotalPrice(orderItemList);
+        // 生成订单
+        Order order = strengthenQuery.assembleOrder(userId, shippingId, payment);
+        if (null == orderRepository.save(order)) {
+            return ApiResult.createByErrorMsg("订单生成错误");
+        }
+        for (OrderItem orderItem : orderItemList) {
+            orderItem.setOrderNo(order.getOrderNo());
+        }
+        // 批量插入
+        orderItemRepository.save(orderItemList);
+        // 减少库存数据
+        strengthenQuery.reduceProductStoct(orderItemList);
+        // 清空购物车
+        strengthenQuery.clearCart(cartList);
+        return ApiResult.createBySuccessData(pojoConvertVo.assembleProductOrderVo(order, orderItemList));
+    }
 
     @Override
-    public ApiResult<?> pay(BigInteger orderNo, Long userId, String path) {
+    public ApiResult<?> pay(long orderNo, Long userId, String path) {
         Map<String, String> resultMap = Maps.newHashMap();
         Order order = orderRepository.findByUserIdAndOrderNo(userId, orderNo);
         if (order == null) {
             return ApiResult.createByErrorMsg("用户没有该订单");
         }
         resultMap.put("orderNo", String.valueOf(order.getOrderNo()));
-
         // (必填) 商户网站订单系统中唯一订单号，64个字符以内，只能包含字母、数字、下划线，
-        String outTradeNo = order.getOrderNo().toString();
+        String outTradeNo = String.valueOf(order.getOrderNo());
 
         // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
-        String subject = "AWMALL扫码支付,订单号:" + outTradeNo;
+        String subject = "\uD83D\uDE33AWMALL商城,订单号:" + outTradeNo;
 
         // (必填) 订单总金额，单位为元，不能超过1亿元
         // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
@@ -130,18 +180,15 @@ public class OrderServiceImpl implements IOrderService {
                 logger.info("支付宝预下单成功: )");
                 AlipayTradePrecreateResponse response = result.getResponse();
                 dumpResponse(response);
-
                 File folder = new File(path);
                 if (!folder.exists()) {
                     folder.setWritable(true);
                     folder.mkdirs();
                 }
-
                 // 需要修改为运行机器上的路径
                 String qrPath = String.format(path + "/qr-%s.png", response.getOutTradeNo());
                 String qrFileName = String.format("qr-%s.png", response.getOutTradeNo());
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
-
                 File targetFile = new File(path, qrFileName);
                 try {
                     FtpUtil.uploadFile(targetFile);
