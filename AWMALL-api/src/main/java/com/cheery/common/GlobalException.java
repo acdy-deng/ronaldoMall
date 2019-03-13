@@ -2,6 +2,8 @@ package com.cheery.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @desc:
@@ -9,7 +11,8 @@ import lombok.Data;
  * @author: RONALDO
  * @date: 2019-03-09 17:56
  */
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 public class GlobalException extends RuntimeException {
 

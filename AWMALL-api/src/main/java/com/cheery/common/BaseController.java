@@ -21,7 +21,7 @@ public class BaseController {
 
     protected ApiResult<?> BaseController(User user, ApiResult result) {
         if (null == user) {
-            throw new GlobalException(ApiCode.NEED_LOGIN.getCode(), ApiCode.NEED_LOGIN.getDesc());
+            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
         }
         return result;
     }
@@ -38,9 +38,10 @@ public class BaseController {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Object handleException(Exception e, HttpServletRequest request) {
+        e.printStackTrace();
         Map<String, Object> map = new HashMap<>(4);
-        map.put("code", ApiCode.ERROR_SERVER.getCode());
-        map.put("msg", ApiCode.ERROR_SERVER.getDesc());
+        map.put("code", ApiStatus.ERROR_SERVER.getCode());
+        map.put("msg", ApiStatus.ERROR_SERVER.getDesc());
         map.put("error", e);
         map.put("url", request.getRequestURL());
         return map;
@@ -57,6 +58,7 @@ public class BaseController {
     @ExceptionHandler(value = GlobalException.class)
     @ResponseBody
     public Object handleMyException(GlobalException e) {
+        e.printStackTrace();
         Map<String, Object> map = new HashMap<>(2);
         map.put("code", e.getCode());
         map.put("msg", e.getDesc());

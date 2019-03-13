@@ -56,37 +56,37 @@ public class ApiResult<T> implements Serializable {
      */
     @JsonIgnore
     public boolean isSuccess() {
-        return this.status.equals(ApiCode.SUCCESS.getCode());
+        return this.status.equals(ApiStatus.SUCCESS.getCode());
     }
 
     /**
      * 定义成功状态下的不同返回
      */
     public static <T> ApiResult<T> createBySuccess() {
-        return new ApiResult<T>(ApiCode.SUCCESS.getCode());
+        return new ApiResult<T>(ApiStatus.SUCCESS.getCode());
     }
 
     public static <T> ApiResult<T> createBySuccessMsg(String message) {
-        return new ApiResult<T>(ApiCode.SUCCESS.getCode(), message);
+        return new ApiResult<T>(ApiStatus.SUCCESS.getCode(), message);
     }
 
     public static <T> ApiResult<T> createBySuccessData(T data) {
-        return new ApiResult<T>(ApiCode.SUCCESS.getCode(), data);
+        return new ApiResult<T>(ApiStatus.SUCCESS.getCode(), data);
     }
 
     public static <T> ApiResult<T> createBySuccessMsgAndData(String message, T data) {
-        return new ApiResult<T>(ApiCode.SUCCESS.getCode(), message, data);
+        return new ApiResult<T>(ApiStatus.SUCCESS.getCode(), message, data);
     }
 
     /**
      * 定义异常状态下的不同返回
      */
     public static <T> ApiResult<T> createByError() {
-        return new ApiResult<T>(ApiCode.ERROR.getCode(), ApiCode.ERROR.getDesc());
+        return new ApiResult<T>(ApiStatus.ERROR.getCode(), ApiStatus.ERROR.getDesc());
     }
 
     public static <T> ApiResult<T> createByErrorMsg(String errorMsg) {
-        return new ApiResult<T>(ApiCode.ERROR.getCode(), errorMsg);
+        return new ApiResult<T>(ApiStatus.ERROR.getCode(), errorMsg);
     }
 
     /**

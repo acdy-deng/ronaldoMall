@@ -1,15 +1,17 @@
 package com.cheery.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @desc: 响应编码枚举类
- * @className: ApiCode
+ * @desc: api响应编码枚举
+ * @className: ApiStatus
  * @author: RONALDO
  * @date: 2019-02-23 15:23
  */
 @Getter
-public enum ApiCode {
+@AllArgsConstructor
+public enum ApiStatus {
 
     /**
      * 成功
@@ -38,10 +40,5 @@ public enum ApiCode {
 
     private final Integer code;
     private final String desc;
-
-    ApiCode(Integer code, String desc) {
-        this.code = code;
-        this.desc = desc;
-    }
 
 }
