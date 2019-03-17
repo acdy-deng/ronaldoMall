@@ -7,6 +7,7 @@ const common = {
     /* 网络请求 200=成功 500=服务器内部错误 10001=异常 10002=非法参数 10003=未登录 */
     request: function (param) {
         $.ajax({
+            method: 'POST',
             url: param.url || '',
             dataType: param.type || 'json',
             data: param.data || '',
@@ -14,13 +15,13 @@ const common = {
             success: function (data) {
                 switch (data.status) {
                     case 200:
-                        typeof param.success === 'function' && param.success(data.data);
+                        typeof param.success === 'function' && param.success(data);
                         break;
                     case 500:
                         console.log('内部服务器错误');
                         break;
                     case 10001:
-                        console.log('异常');
+                        typeof param.success === 'function' && param.success(data.status);
                         break;
                     case 10003:
                         this.doLogin();

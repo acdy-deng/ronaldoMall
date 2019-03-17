@@ -39,7 +39,7 @@ ion-icon {
 
 .nav {
     height: 60px;
-    width: 1200px;
+    max-width: 1200px;
 
 }
 
@@ -79,4 +79,25 @@ ion-icon {
 .nav ul li a:hover {
     color: #777777;
     background: #EEEEEE
+}
+
+@media only screen and (max-width: 1920px) {
+    .collapse ul li[class*="none"] {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .collapse ul li[class*="none"] {
+        display: block;
+    }
+    .topbar-container{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .section .container .row {
+        padding-left: 1.5rem !important;
+    }
 }
