@@ -50,7 +50,7 @@ public class PayController {
     @ApiOperation(value = "支付")
     @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "orderNo")
     @GetMapping("/pay")
-    public ApiResult<?> pay(HttpServletRequest request, HttpSession session, long orderNo) {
+    public ApiResult<?> pay(HttpServletRequest request, long orderNo) {
         return orderService.pay(orderNo, user().getId(), request.getSession().getServletContext().getRealPath("upload"));
     }
 

@@ -35,7 +35,7 @@ public class CategoryController {
      */
     @ApiOperation(value = "获取当前父类id下的所有产品,不递归查询")
     @ApiImplicitParam(name = "parentId", value = "父类id", dataType = "String")
-    @GetMapping("/category")
+    @GetMapping("/list")
     public ApiResult<?> getParallelCategory(@RequestParam(value = "parentId", defaultValue = "0") int parentId) {
         return categoryService.findParallelAndChilderCategoryByParentId(parentId);
     }

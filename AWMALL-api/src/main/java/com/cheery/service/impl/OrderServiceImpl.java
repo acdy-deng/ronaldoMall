@@ -51,6 +51,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import static com.cheery.util.SnowFlakeUtil.snowFlake;
 
@@ -104,6 +105,7 @@ public class OrderServiceImpl implements IOrderService {
         BigDecimal payment = strengthenQuery.getOrderTotalPrice(orderItemList);
         // 生成订单
         Order order = strengthenQuery.assembleOrder(userId, shippingId, payment);
+        order.setId(System.currentTimeMillis() + new Random().nextInt(99));
         if (null == orderRepository.save(order)) {
             return ApiResult.createByErrorMsg("订单生成错误");
         }

@@ -1,6 +1,5 @@
 package com.cheery.util;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
@@ -34,7 +33,6 @@ public class FtpUtil {
         logger.info("开始连接ftp服务器,结束上传,上传结果:{}", result);
         return result;
     }
-
 
     private boolean uploadFile(String remotePath, File file) throws IOException {
         boolean uploaded = true;
