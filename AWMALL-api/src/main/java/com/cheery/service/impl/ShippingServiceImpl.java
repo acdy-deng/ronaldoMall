@@ -21,6 +21,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @desc: 收货地址业务逻辑层接口实现
@@ -37,6 +38,7 @@ public class ShippingServiceImpl implements IShippingService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> addAddress(Shipping shipping) {
+        shipping.setId(System.currentTimeMillis() + new Random().nextInt(99));
         Shipping s = repository.save(shipping);
         if (null == s) {
             return ApiResult.createByErrorMsg("新增地址失败");

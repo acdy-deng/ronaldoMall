@@ -27,12 +27,13 @@ public interface IUserService {
      * desc: 用户注册
      *
      * @param user 用户对象
+     * @param otp  验证码
      * @return ApiResult<User>
      * @throws Exception
      * @auther RONALDO
      * @date: 2019-02-23 23:15
      */
-    ApiResult<?> register(User user);
+    ApiResult<?> register(User user, String otp);
 
     /**
      * desc: 未登录状态下的重置密码

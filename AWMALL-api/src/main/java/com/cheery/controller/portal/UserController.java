@@ -54,7 +54,7 @@ public class UserController {
      * @date: 2019-02-23 22:34
      */
     @ApiOperation(value = "用户登出")
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ApiResult<?> logout(HttpSession session) {
         session.removeAttribute(Constant.CURRENT_USER);
         if (null != user()) {
@@ -75,8 +75,8 @@ public class UserController {
     @ApiOperation(value = "用户注册")
     @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PostMapping("/register")
-    public ApiResult<?> register(User user) {
-        return userService.register(user);
+    public ApiResult<?> register(User user, String otp) {
+        return userService.register(user, otp);
     }
 
     /**
@@ -93,7 +93,24 @@ public class UserController {
     }
 
     /**
-     * desc: 根据邮箱获取otp验证码
+     * desc: 注册时获取验证码
+     *
+     * @param email 邮箱
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-18 19:53
+     */
+    @GetMapping("/getotp")
+    public ApiResult<?> getOtp(HttpSession session, String email) {
+        String otpCode = otp();
+        session.setMaxInactiveInterval(5 * 60);
+        session.setAttribute("otp", otpCode);
+        mailService.sendSimpleMail(email, "AWMALL商城官网", "欢迎您注册 您的验证码为{ " + otpCode + " },请于3分钟内正确输入，如非本人操作，请忽略此邮件。");
+        return ApiResult.createBySuccessData("发送成功");
+    }
+
+    /**
+     * desc: 未登录情况下查找密码 根据邮箱获取otp验证码
      *
      * @param email 邮箱
      * @return ApiResult<?>

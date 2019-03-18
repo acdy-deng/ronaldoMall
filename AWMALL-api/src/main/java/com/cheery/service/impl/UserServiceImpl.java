@@ -34,26 +34,25 @@ public class UserServiceImpl implements IUserService {
         // 将文本密码二次加密
         String md5Password = Md5Util.md5EncodeUtf8(password);
         User user = repository.findByEmailAndPassword(email, md5Password);
-        if (null == user) {
-            return ApiResult.createByErrorMsg("用户名或密码错误");
-        }
-        // 密码制空
-        user.setPassword(StringUtils.EMPTY);
-        user.setComments(null);
-        return ApiResult.createBySuccessMsgAndData("登录成功", user);
+        return ApiResult.createBySuccessData(user);
     }
 
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public ApiResult<?> register(User user) {
+    public ApiResult<?> register(User user, String otp) {
+        String otpCode = (String) request.getSession().getAttribute("otp");
         // 设置权限为0
         user.setRole(Constant.Role.ROLE_CUSTOMER);
         // 保证邮箱和手机是用户系统唯一的
         if (0 < repository.countByEmail(user.getEmail())) {
             return ApiResult.createByErrorMsg("该邮箱已被占用");
         }
+        if (!otp.equals(otpCode)) {
+            return ApiResult.createByErrorMsg("验证码错误");
+        }
         // MD5加密用户密码
         user.setPassword(Md5Util.md5EncodeUtf8(user.getPassword()));
+        user.setHeadPic("default.jpg");
         if (null == repository.save(user)) {
             return ApiResult.createByErrorMsg("注册异常请稍候再试");
         }
