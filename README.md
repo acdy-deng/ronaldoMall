@@ -1,2 +1,2 @@
 # awmall
-<a href='https://github.com/crbug/awmall'>Wiki文档地址</a>
+<a href='https://github.com/crbug/awmall/wiki'>Wiki文档地址</a>
