@@ -25,10 +25,11 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
      * @auther RONALDO
      * @date: 2019-02-23 16:50
      */
+    @Query("from User where email = ?1 and password = ?2 and status > 0")
     User findByEmailAndPassword(String email, String password);
 
     /**
-     * desc: 根据手机号码查询该用户是否存在
+     * desc: 根据邮箱或用户名查询该用户是否存在
      *
      * @param email 邮箱
      * @return 用户对象
@@ -87,7 +88,7 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
     int countByEmailIsOccupy(String emial, Long id);
 
     /**
-     * desc: 查询是否被占用
+     * desc: 查询邮箱是否被占用
      *
      * @param email 邮箱
      * @return 受影响的行数
@@ -95,6 +96,16 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
      * @date: 2019-02-25 14:19
      */
     int countByEmail(String email);
+
+    /**
+     * desc: 查询用户名是否被占用
+     *
+     * @param userName 用户名
+     * @return 受影响的行数
+     * @auther RONALDO
+     * @date: 2019-03-20 14:32
+     */
+    int countByUsername(String userName);
 
     /**
      * desc: 根据用户id查询用户信息
@@ -105,4 +116,17 @@ public interface UserRepository extends JpaRepository<User, Long>, CrudRepositor
      * @date: 2019-03-05 14:28
      */
     User findById(Long id);
+
+    /**
+     * desc: 修改用户状态
+     *
+     * @param email 邮箱
+     * @param state 状态码
+     * @return
+     * @auther RONALDO
+     * @date: 2019-03-19 16:06
+     */
+    @Modifying
+    @Query(value = "UPDATE `user` SET `status` = ? WHERE email = ?", nativeQuery = true)
+    int updateUserState(Integer state, String email);
 }

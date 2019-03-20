@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,9 @@ public class LoginController {
     public ApiResult<?> userlogin(HttpSession session, String email, String password) {
         ApiResult<User> response = userService.login(email, password);
         User user = response.getData();
+        if (null == user) {
+            return ApiResult.createByErrorMsg("用户名或密码错误");
+        }
         if (response.isSuccess()) {
             session.setAttribute(Constant.CURRENT_USER, user);
         }

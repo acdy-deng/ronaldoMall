@@ -49,7 +49,7 @@ public class ShippingController {
      */
     @ApiOperation(value = "添加收货地址")
     @PostMapping("/add")
-    public ApiResult<?> add(HttpSession session, Shipping shipping) {
+    public ApiResult<?> add(Shipping shipping) {
         shipping.setUserId(user().getId());
         return shippingService.addAddress(shipping);
     }
@@ -63,8 +63,8 @@ public class ShippingController {
      * @date: 2019-03-06 13:29
      */
     @ApiOperation(value = "修改收货地址")
-    @PostMapping("/update")
-    public ApiResult<?> update(HttpSession session, Shipping shipping) {
+    @PutMapping("/update")
+    public ApiResult<?> update(Shipping shipping) {
         shipping.setUserId(user().getId());
         return shippingService.updateAddress(shipping);
     }

@@ -41,7 +41,7 @@ public class ProductServiceImpl implements IProductService {
     private PojoConvertVo pojoConvertVo;
 
     @Override
-    public ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product) {
+    public ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String category, String brand, String style, Product product) {
         Pageable pageable = new PageRequest(page, size);
         Page<Product> products = repository.findAll(new Specification<Product>() {
             @Override
@@ -55,6 +55,9 @@ public class ProductServiceImpl implements IProductService {
                 }
                 if (null != style && !StringUtils.isEmpty(style)) {
                     list.add(criteriaBuilder.equal(root.get("style").get("name"), style));
+                }
+                if (null != category && !StringUtils.isEmpty(category)) {
+                    list.add(criteriaBuilder.equal(root.get("category").get("id"), category));
                 }
                 if (null != product.getIshot()) {
                     list.add(criteriaBuilder.equal(root.get("ishot"), product.getIshot()));

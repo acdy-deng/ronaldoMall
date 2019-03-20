@@ -43,7 +43,7 @@ public class CommonController {
             @ApiImplicitParam(name = "size", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(name = "id", value = "产品id", dataType = "Long")
     })
-    @GetMapping("/p/comment")
+    @GetMapping("/p/comment/list")
     public ApiResult<?> findAllByProductId(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
@@ -57,7 +57,7 @@ public class CommonController {
      *
      * @param page 页码
      * @param size 每页条数
-     * @param id   用户id
+     * @param userId   用户id
      * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-06 14:49
@@ -66,15 +66,15 @@ public class CommonController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", value = "页码", dataType = "Integer"),
             @ApiImplicitParam(name = "size", value = "每页条数", dataType = "Integer"),
-            @ApiImplicitParam(name = "id", value = "产品id", dataType = "Long")
+            @ApiImplicitParam(name = "userId", value = "用户id", dataType = "Long")
     })
-    @GetMapping("/u/comment")
+    @GetMapping("/u/comment/list")
     public ApiResult<?> findAllByUserId(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
-            Long id
+            Long userId
     ) {
-        return commentService.findCommentByUserId(page, size, id);
+        return commentService.findCommentByUserId(page, size, userId);
     }
 
 }

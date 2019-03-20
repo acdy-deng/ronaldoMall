@@ -2,6 +2,7 @@ package com.cheery.service;
 
 import com.cheery.common.ApiResult;
 import com.cheery.pojo.User;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @desc: 用户业务逻辑层接口
@@ -27,7 +28,7 @@ public interface IUserService {
      * desc: 用户注册
      *
      * @param user 用户对象
-     * @param otp  验证码
+     * @param otp  otp
      * @return ApiResult<User>
      * @throws Exception
      * @auther RONALDO
@@ -49,7 +50,7 @@ public interface IUserService {
     ApiResult<?> restPassword(String email, String newPassword, String otp);
 
     /**
-     * desc:
+     * desc: 登录状态下的重置密码
      *
      * @param user        用户对象
      * @param oldPassword 原密码
@@ -84,11 +85,10 @@ public interface IUserService {
      */
     User getInfoById(Long id);
 
-
     /**
      * desc: 根据邮箱查看用户是否存在
      *
-     * @param email 邮箱
+     * @param email  邮箱
      * @return ApiResult<?>
      * @auther RONALDO
      * @date: 2019-03-09 22:04
@@ -104,5 +104,27 @@ public interface IUserService {
      * @date: 2019-02-27 19:44
      */
     ApiResult<?> checkUserRole(User user);
+
+    /**
+     * desc: 头像上传
+     *
+     * @param file MultipartFile
+     * @param path 文件路径
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-18 20:34
+     */
+    String uploadHeadPic(MultipartFile file, String path);
+
+    /**
+     * desc: 修改用户状态
+     *
+     * @param email 邮箱
+     * @param state 状态码
+     * @return ApiResult<?>
+     * @auther RONALDO
+     * @date: 2019-03-19 16:08
+     */
+    ApiResult<?> updateUserState(String email, Integer state);
 
 }

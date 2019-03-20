@@ -5,14 +5,23 @@ import com.cheery.pojo.User;
 import com.cheery.repository.UserRepository;
 import com.cheery.service.IUserService;
 import com.cheery.common.Constant;
+import com.cheery.util.FtpUtil;
 import com.cheery.util.Md5Util;
 import com.cheery.util.UpdateUtil;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @desc: 用户业务逻辑层接口实现
@@ -29,6 +38,8 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private HttpServletRequest request;
 
+    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Override
     public ApiResult<User> login(String email, String password) {
         // 将文本密码二次加密
@@ -41,22 +52,23 @@ public class UserServiceImpl implements IUserService {
     @Transactional(rollbackOn = Exception.class)
     public ApiResult<?> register(User user, String otp) {
         String otpCode = (String) request.getSession().getAttribute("otp");
-        // 设置权限为0
-        user.setRole(Constant.Role.ROLE_CUSTOMER);
-        // 保证邮箱和手机是用户系统唯一的
         if (0 < repository.countByEmail(user.getEmail())) {
-            return ApiResult.createByErrorMsg("该邮箱已被占用");
+            return ApiResult.createByErrorMsg("该邮箱已存在");
+        }
+        if (0 < repository.countByUsername(user.getUsername())) {
+            return ApiResult.createByErrorMsg("该用户名已存在");
         }
         if (!otp.equals(otpCode)) {
-            return ApiResult.createByErrorMsg("验证码错误");
+            return ApiResult.createByErrorMsg("验证码不正确");
         }
-        // MD5加密用户密码
+        user.setRole(Constant.Role.ROLE_CUSTOMER);
         user.setPassword(Md5Util.md5EncodeUtf8(user.getPassword()));
         user.setHeadPic("default.jpg");
-        if (null == repository.save(user)) {
-            return ApiResult.createByErrorMsg("注册异常请稍候再试");
+        user.setStatus(0);
+        if (null != repository.save(user)) {
+            return ApiResult.createBySuccessMsg("注册成功");
         }
-        return ApiResult.createBySuccessMsg("注册成功");
+        return ApiResult.createByErrorMsg("注册异常请稍候再试");
     }
 
     @Override
@@ -126,5 +138,37 @@ public class UserServiceImpl implements IUserService {
         return ApiResult.createByError();
     }
 
+    @Override
+    public String uploadHeadPic(@RequestParam(value = "file", required = false) MultipartFile file, String path) {
+        String fileName = file.getOriginalFilename();
+        String fileExtensionName = fileName.substring(fileName.lastIndexOf(".") + 1);
+        String uploadFileName = UUID.randomUUID().toString() + "." + fileExtensionName;
+        logger.info("开始上传文件,上传文件的文件名:{},上传的路径:{},新文件名:{}", fileName, path, uploadFileName);
+        File fileDir = new File(path);
+        if (!fileDir.exists()) {
+            fileDir.setWritable(true);
+            fileDir.mkdirs();
+        }
+        File targetFile = new File(path, uploadFileName);
+        try {
+            file.transferTo(targetFile);
+            //文件已经上传成功了
+            FtpUtil.uploadFile(targetFile);
+            //已经上传到ftp服务器上
+            targetFile.delete();
+        } catch (IOException e) {
+            logger.error("上传文件异常", e);
+            return null;
+        }
+        return targetFile.getName();
+    }
 
+    @Override
+    @Transactional(rollbackOn = Exception.class)
+    public ApiResult<?> updateUserState(String email, Integer state) {
+        if (0 > repository.updateUserState(state, email)) {
+            return ApiResult.createBySuccessMsg("激活失败");
+        }
+        return ApiResult.createBySuccessData("激活成功");
+    }
 }

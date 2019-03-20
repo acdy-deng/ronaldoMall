@@ -43,6 +43,10 @@ public class User extends BaseEntity implements Serializable {
     @JSONField(serialize = false)
     private Integer role;
 
+    @Column(name = "status")
+    @JSONField(serialize = false)
+    private Integer status;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JSONField(serialize = false)
     private Collection<ProductComment> comments;

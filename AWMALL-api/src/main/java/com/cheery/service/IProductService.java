@@ -17,6 +17,7 @@ public interface IProductService {
      * @param page     页码
      * @param size     每页条数
      * @param keyWords 搜索关键字
+     * @param category 分类
      * @param brand    产品品牌
      * @param style    产品风格
      * @param product  产品实体( 用于传多条件参数 )
@@ -24,7 +25,7 @@ public interface IProductService {
      * @auther RONALDO
      * @date: 2019-02-28 21:59
      */
-    ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String brand, String style, Product product);
+    ApiResult<?> findProductByMultipleconditions(Integer page, Integer size, String keyWords, String category, String brand, String style, Product product);
 
     /**
      * desc: 根据产品id查询产品详情

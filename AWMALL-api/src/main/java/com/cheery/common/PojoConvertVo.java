@@ -118,11 +118,9 @@ public class PojoConvertVo {
         vo.setReceiverAddress(shipping.getReceiverAddress());
         vo.setReceiverCity(shipping.getReceiverCity());
         vo.setReceiverDistrict(shipping.getReceiverDistrict());
-        vo.setReceiverMobile(shipping.getReceiverMobile());
         vo.setReceiverName(shipping.getReceiverName());
         vo.setReceiverProvince(shipping.getReceiverProvince());
         vo.setReceiverPhone(vo.getReceiverPhone());
-        vo.setReceiverZip(shipping.getReceiverZip());
         return vo;
     }
 

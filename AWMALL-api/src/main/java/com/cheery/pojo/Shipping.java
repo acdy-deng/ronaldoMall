@@ -30,8 +30,6 @@ public class Shipping extends BaseEntity implements Serializable {
     @Column(name = "receiver_phone")
     private String receiverPhone;
 
-    @Column(name = "receiver_mobile")
-    private String receiverMobile;
 
     @Column(name = "receiver_province")
     private String receiverProvince;
@@ -44,8 +42,5 @@ public class Shipping extends BaseEntity implements Serializable {
 
     @Column(name = "receiver_address")
     private String receiverAddress;
-
-    @Column(name = "receiver_zip")
-    private String receiverZip;
 
 }

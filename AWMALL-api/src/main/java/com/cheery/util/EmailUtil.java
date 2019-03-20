@@ -42,7 +42,7 @@ public class EmailUtil {
             Context context = new Context();
             context.setVariable("author", "AWMALL官网");
             context.setVariable("tips", "-收到该邮件请勿回复");
-            String emailContent = templateEngine.process("Email", context);
+            String emailContent = templateEngine.process("push-email", context);
             mailService.sendHtmlMail("1781884292@qq.com", "AWMALL官网", emailContent);
         } catch (Exception e) {
             e.printStackTrace();

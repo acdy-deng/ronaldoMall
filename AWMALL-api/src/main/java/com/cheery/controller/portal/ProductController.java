@@ -52,9 +52,9 @@ public class ProductController {
     public ApiResult<?> findProductByMultipleconditions(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "2") Integer size,
-            String keyWords, String brandname, String stylename, Product product
+            String keyWords, String categoryId, String brandName, String styleName, Product product
     ) {
-        return productService.findProductByMultipleconditions(page, size, keyWords, brandname, stylename, product);
+        return productService.findProductByMultipleconditions(page, size, keyWords, categoryId, brandName, styleName, product);
     }
 
     /**

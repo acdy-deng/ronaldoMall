@@ -16,8 +16,6 @@ public class ShippingVo {
 
     private String receiverPhone;
 
-    private String receiverMobile;
-
     private String receiverProvince;
 
     private String receiverCity;
@@ -25,7 +23,5 @@ public class ShippingVo {
     private String receiverDistrict;
 
     private String receiverAddress;
-
-    private String receiverZip;
 
 }
