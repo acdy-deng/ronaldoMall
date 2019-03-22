@@ -10,6 +10,7 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -48,8 +49,8 @@ public class PayController {
      * @date: 2019-03-10 20:25
      */
     @ApiOperation(value = "支付")
-    @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "orderNo")
-    @GetMapping("/pay")
+    @ApiImplicitParam(name = "orderNo", value = "订单号", dataType = "Long")
+    @PostMapping("/pay")
     public ApiResult<?> pay(HttpServletRequest request, long orderNo) {
         return orderService.pay(orderNo, user().getId(), request.getSession().getServletContext().getRealPath("upload"));
     }

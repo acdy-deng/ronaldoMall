@@ -46,7 +46,12 @@ public class ProductController {
             @ApiImplicitParam(name = "page", value = "页码", dataType = "Integer"),
             @ApiImplicitParam(name = "size", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(name = "keyWords", value = "搜索关键字", dataType = "String"),
-            @ApiImplicitParam(name = "product", value = "产品实体", dataType = "Product")
+            @ApiImplicitParam(name = "categoryId", value = "产品ID", dataType = "Integer"),
+            @ApiImplicitParam(name = "brandName", value = "品牌名称", dataType = "String"),
+            @ApiImplicitParam(name = "styleName", value = "风格名称", dataType = "String"),
+            @ApiImplicitParam(name = "ishot", value = "是否热销", dataType = "Integer"),
+            @ApiImplicitParam(name = "isboutique", value = "是否精品", dataType = "Integer"),
+            @ApiImplicitParam(name = "isspike", value = "是否秒杀", dataType = "Integer"),
     })
     @GetMapping("/list")
     public ApiResult<?> findProductByMultipleconditions(

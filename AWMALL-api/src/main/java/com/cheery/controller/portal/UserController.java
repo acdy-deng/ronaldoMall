@@ -122,10 +122,6 @@ public class UserController {
     @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String")
     @GetMapping("/register/otp")
     public ApiResult<?> getOtpForRegister(String email) {
-
-        System.out.println("--->" + email);
-
-
         String otpCode = otp();
         session.setMaxInactiveInterval(3 * 60);
         session.setAttribute("otp", otpCode);
