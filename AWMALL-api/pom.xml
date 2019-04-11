@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.19.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.cheery</groupId>
     <artifactId>awmall</artifactId>
@@ -57,17 +57,6 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- security -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>io.jsonwebtoken</groupId>-->
-        <!--<artifactId>jjwt</artifactId>-->
-        <!--<version>0.7.0</version>-->
-        <!--</dependency>-->
-
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -83,13 +72,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
-        <dependency>
-            <groupId>com.alipay.sdk</groupId>
-            <artifactId>alipay-sdk-java</artifactId>
-            <version>3.4.27.ALL</version>
         </dependency>
 
         <!-- alipay -->
