@@ -17,10 +17,43 @@ $('.topbar-wrap .nav ul li').on('click', function () {
     $(this).attr('class', 'active');
     switch ($(this).index()) {
         case 0:
+            console.log('index page');
             break;
         case 1:
             $.pjax({
-                url: "./2.html",
+                url: "./page/living-room.html",
+                container: "#m-body",
+                push: false,
+                fragment: "body"
+            });
+            break;
+        case 2:
+            $.pjax({
+                url: "./page/tip.html",
+                container: "#m-body",
+                push: false,
+                fragment: "body"
+            });
+            break;
+        case 3:
+            $.pjax({
+                url: "./page/tip.html",
+                container: "#m-body",
+                push: false,
+                fragment: "body"
+            });
+            break;
+        case 4:
+            $.pjax({
+                url: "./page/tip.html",
+                container: "#m-body",
+                push: false,
+                fragment: "body"
+            });
+            break;
+        case 5:
+            $.pjax({
+                url: "./page/tip.html",
                 container: "#m-body",
                 push: false,
                 fragment: "body"

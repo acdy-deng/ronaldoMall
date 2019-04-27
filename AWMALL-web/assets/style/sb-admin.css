@@ -12136,10 +12136,7 @@ a:focus {
 }
 
 #getotp {
-    position: absolute;
-    right: 110px;
-    top: 280px;
-    cursor: pointer;
+    font-size: 14px;
 }
 
 form.user .custom-checkbox.small label {

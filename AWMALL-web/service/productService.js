@@ -6,8 +6,8 @@
 const product = {
     // 多条件查询商品
     multiQuery: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/product/list',
+        util.request({
+            url: util.url() + '/product/list',
             data: data,
             method: 'GET',
             success: resolve,
@@ -16,8 +16,8 @@ const product = {
     },
     // 查询商品详情
     productDetails: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/product/details',
+        util.request({
+            url: util.url() + '/product/details',
             data: data,
             method: 'GET',
             success: resolve,
@@ -26,8 +26,8 @@ const product = {
     },
     // 查询产品评论
     getComment: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/p/comment/list',
+        util.request({
+            url: util.url() + '/p/comment/list',
             data: data,
             method: 'GET',
             success: resolve,

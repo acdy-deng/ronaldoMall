@@ -6,8 +6,8 @@
 const user = {
     // 用户登录
     login: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/login',
+        util.request({
+            url: util.url() + '/login',
             data: data,
             method: 'POST',
             success: resolve,
@@ -16,8 +16,8 @@ const user = {
     },
     // 用户登出
     lagout: function (resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/logout',
+        util.request({
+            url: util.url() + '/usr/logout',
             data: null,
             method: 'POST',
             success: resolve,
@@ -26,8 +26,8 @@ const user = {
     },
     // 用户注册
     register: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/register',
+        util.request({
+            url: util.url() + '/usr/register',
             data: data,
             method: 'POST',
             success: resolve,
@@ -36,8 +36,8 @@ const user = {
     },
     // 获取注册时的验证码
     getOtp: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/register/otp',
+        util.request({
+            url: util.url() + '/usr/register/otp',
             data: data,
             method: 'GET',
             success: resolve,
@@ -46,8 +46,8 @@ const user = {
     },
     // 获取用户信息
     getInfo: function (resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/user',
+        util.request({
+            url: util.url() + '/usr/user',
             data: null,
             method: 'POST',
             success: resolve,
@@ -56,8 +56,8 @@ const user = {
     },
     // 登录状态下修改密码
     resPwd: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/respwds',
+        util.request({
+            url: util.url() + '/usr/respwds',
             data: data,
             method: 'PUT',
             success: resolve,
@@ -66,8 +66,8 @@ const user = {
     },
     // 未登录状态下修改密码
     noLoginResPwd: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/respwd',
+        util.request({
+            url: util.url() + '/usr/respwd',
             data: data,
             method: 'PUT',
             success: resolve,
@@ -76,8 +76,8 @@ const user = {
     },
     // 修改用户信息
     updateInfo: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/usr/update',
+        util.request({
+            url: util.url() + '/usr/update',
             data: data,
             method: 'PUT',
             success: resolve,
@@ -86,8 +86,8 @@ const user = {
     },
     // 查询用户全部评论
     getComment: function (data, resolve, reject) {
-        common.request({
-            url: common.url() + '/u/comment/list',
+        util.request({
+            url: util.url() + '/u/comment/list',
             data: data,
             method: 'GET',
             success: resolve,
