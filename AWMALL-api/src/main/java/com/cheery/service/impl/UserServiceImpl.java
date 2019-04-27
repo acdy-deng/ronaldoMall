@@ -64,7 +64,7 @@ public class UserServiceImpl implements IUserService {
         user.setRole(Constant.Role.ROLE_CUSTOMER);
         user.setPassword(Md5Util.md5EncodeUtf8(user.getPassword()));
         user.setHeadPic("default.jpg");
-        user.setStatus(0);
+        user.setStatus(1);
         if (null != repository.save(user)) {
             return ApiResult.createBySuccessMsg("注册成功");
         }

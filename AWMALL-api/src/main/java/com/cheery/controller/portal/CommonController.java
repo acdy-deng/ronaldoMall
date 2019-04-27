@@ -1,6 +1,7 @@
 package com.cheery.controller.portal;
 
 import com.cheery.common.ApiResult;
+import com.cheery.common.BaseController;
 import com.cheery.service.ICommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,12 +17,8 @@ import org.springframework.web.bind.annotation.*;
  * @date: 2019-03-12 11:39
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @Api("评论模块Api")
-public class CommonController {
-
-    @Autowired
-    private ICommentService commentService;
+public class CommonController extends BaseController {
 
     /**
      * desc: 根据产品id查询对应的评论

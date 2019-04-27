@@ -1,6 +1,7 @@
 package com.cheery.controller.portal;
 
 import com.cheery.common.ApiResult;
+import com.cheery.common.BaseController;
 import com.cheery.service.ICategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,13 +16,9 @@ import org.springframework.web.bind.annotation.*;
  * @date: 2019-03-04 13:30
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/category")
 @Api("产品分类模块Api")
-public class CategoryController {
-
-    @Autowired
-    private ICategoryService categoryService;
+public class CategoryController extends BaseController {
 
     /**
      * desc:

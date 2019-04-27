@@ -22,7 +22,6 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-10 20:22
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @Api("支付模块Api")
 public class PayController {
 

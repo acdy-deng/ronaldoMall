@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * @desc:
+ * @desc: druid连接池配置
  * @className: DruidConfiguration
  * @author: RONALDO
  * @date: 2019-02-23 22:20

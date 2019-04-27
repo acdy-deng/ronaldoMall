@@ -1,6 +1,7 @@
 package com.cheery.controller.portal;
 
 import com.cheery.common.ApiResult;
+import com.cheery.common.BaseController;
 import com.cheery.common.Constant;
 import com.cheery.pojo.Product;
 import com.cheery.pojo.User;
@@ -22,13 +23,9 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-02-28 21:52
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/product")
 @Api("产品模块Api")
-public class ProductController {
-
-    @Autowired
-    private IProductService productService;
+public class ProductController extends BaseController {
 
     /**
      * desc: 根据不同的条件组合查询

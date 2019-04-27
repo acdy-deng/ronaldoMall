@@ -19,24 +19,9 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-04 14:15
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/cart")
 @Api("购物车模块Api")
-public class CartController {
-
-    @Autowired
-    private ICartService cartService;
-
-    @Autowired
-    private HttpSession session;
-
-    private User user() {
-        User user = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == user) {
-            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
-        }
-        return user;
-    }
+public class CartController extends BaseController{
 
     /**
      * desc: 获取当前用户的购物车列表
@@ -47,7 +32,7 @@ public class CartController {
      * @date: 2019-03-04 19:50
      */
     @ApiOperation(value = "获取当前用户的购物车列表")
-    @PostMapping("/list")
+    @GetMapping("/list")
     public ApiResult<?> list() {
         return cartService.cartInfo(user().getId());
     }
@@ -61,7 +46,7 @@ public class CartController {
      * @date: 2019-03-04 21:14
      */
     @ApiOperation(value = "获取购物车商品总数")
-    @PostMapping("/count")
+    @GetMapping("/count")
     public ApiResult<?> count() {
         return cartService.countProduct(user().getId());
     }

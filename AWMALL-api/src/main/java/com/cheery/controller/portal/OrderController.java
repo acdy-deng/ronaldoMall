@@ -19,24 +19,9 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-12 11:35
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/order")
 @Api("订单模块Api")
-public class OrderController {
-
-    @Autowired
-    private IOrderService orderService;
-
-    @Autowired
-    private HttpSession session;
-
-    private User user() {
-        User user = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == user) {
-            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
-        }
-        return user;
-    }
+public class OrderController extends BaseController{
 
     /**
      * desc: 创建订单

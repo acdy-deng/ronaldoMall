@@ -36,32 +36,11 @@ import static com.cheery.util.OtpUtil.otp;
  * @date: 2019-02-23 14:52
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr")
 @Api("用户模块Api")
-public class UserController {
+public class UserController extends BaseController{
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
-
-    @Autowired
-    private IUserService userService;
-
-    @Autowired
-    private IMailService mailService;
-
-    @Autowired
-    private TemplateEngine templateEngine;
-
-    @Autowired
-    private HttpSession session;
-
-    private User user() {
-        User user = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == user) {
-            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
-        }
-        return user;
-    }
 
     /**
      * desc: 用户登出

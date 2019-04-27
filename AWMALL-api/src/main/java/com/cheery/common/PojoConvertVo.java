@@ -1,9 +1,6 @@
 package com.cheery.common;
 
-import com.cheery.pojo.Order;
-import com.cheery.pojo.OrderItem;
-import com.cheery.pojo.Product;
-import com.cheery.pojo.Shipping;
+import com.cheery.pojo.*;
 import com.cheery.repository.ShippingRepository;
 import com.cheery.util.DateTimeUtil;
 import com.cheery.vo.*;
@@ -78,8 +75,9 @@ public class PojoConvertVo {
     /**
      * desc: 用于订单 和 订单明细pojo转vo
      *
-     * @param
-     * @return
+     * @param order         订单对象
+     * @param orderItemList 订单详情集合
+     * @return OrderVo
      * @auther RONALDO
      * @date: 2019-03-12 22:00
      */
@@ -108,8 +106,8 @@ public class PojoConvertVo {
     /**
      * desc: 用于收货地址pojo转vo
      *
-     * @param
-     * @return
+     * @param shipping 收货地址对象
+     * @return ShippingVo
      * @auther RONALDO
      * @date: 2019-03-12 22:18
      */
@@ -127,8 +125,8 @@ public class PojoConvertVo {
     /**
      * desc: 用于订单详情pojo转vo
      *
-     * @param
-     * @return
+     * @param orderItem 订单详情
+     * @return OrderItemVo
      * @auther RONALDO
      * @date: 2019-03-12 22:35
      */

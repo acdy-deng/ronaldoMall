@@ -1,6 +1,7 @@
 package com.cheery.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.cheery.common.BaseController;
 import com.cheery.common.Constant;
 import com.cheery.common.ApiResult;
 import com.cheery.pojo.User;
@@ -24,12 +25,8 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-02-27 14:23
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @Api("登录模块Api")
-public class LoginController {
-
-    @Autowired
-    private UserServiceImpl userService;
+public class LoginController extends BaseController {
 
     /**
      * desc: 用户登录

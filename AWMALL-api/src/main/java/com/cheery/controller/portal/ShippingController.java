@@ -20,24 +20,9 @@ import javax.servlet.http.HttpSession;
  * @date: 2019-03-06 13:23
  */
 @RestController
-@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/usr/address")
 @Api("用户收货地址模块Api")
-public class ShippingController {
-
-    @Autowired
-    private IShippingService shippingService;
-
-    @Autowired
-    private HttpSession session;
-
-    private User user() {
-        User user = (User) session.getAttribute(Constant.CURRENT_USER);
-        if (null == user) {
-            throw new GlobalException(ApiStatus.NEED_LOGIN.getCode(), ApiStatus.NEED_LOGIN.getDesc());
-        }
-        return user;
-    }
+public class ShippingController extends BaseController{
 
     /**
      * desc: 添加收货地址
